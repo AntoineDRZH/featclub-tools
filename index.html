@@ -1,120 +1,131 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Feat Club — Générateur de Posts</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feat Club — Générateur de Posts Instagram</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: sans-serif; background: #F4F4F4; min-height: 100vh; }
-    .header { background: #1A1A1A; padding: 24px; position: relative; overflow: hidden; }
-    .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #E8541A, #2A8C7E); }
-    .header h1 { color: #fff; font-size: 22px; margin-bottom: 4px; }
-    .header p { color: #888; font-size: 13px; }
-    .label { font-size: 10px; letter-spacing: 4px; color: #E8541A; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
-    .container { max-width: 800px; margin: 0 auto; padding: 24px; }
-    .weeks { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-    .week-btn { padding: 7px 16px; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 700; background: #fff; color: #888; }
-    .week-btn.active { background: #E8541A; color: #fff; }
-    .grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
-    @media(min-width: 600px) { .grid.has-result { grid-template-columns: 1fr 1fr; } }
-    .day-card { background: #fff; border-radius: 10px; padding: 12px 14px; cursor: pointer; border: 2px solid transparent; box-shadow: 0 1px 4px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-    .day-card.selected { border-color: #E8541A; }
-    .day-num { min-width: 34px; height: 34px; border-radius: 7px; background: #F4F4F4; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #888; }
-    .day-card.selected .day-num { background: #E8541A; color: #fff; }
-    .day-info { flex: 1; }
-    .day-tag { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 600; margin-bottom: 3px; }
-    .day-idea { font-size: 13px; color: #1A1A1A; }
-    .arrow { color: #ccc; font-size: 16px; }
-    .day-card.selected .arrow { color: #E8541A; }
-    .result-header { background: #fff; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; border: 1px solid #E8541A20; }
-    .day-label { font-size: 10px; letter-spacing: 3px; color: #E8541A; text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
-    .day-title { font-size: 14px; color: #1A1A1A; font-weight: 600; }
-    .result-card { background: #fff; border-radius: 10px; overflow: hidden; }
-    .result-section { padding: 14px 16px 0; }
-    .result-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
-    .result-content { font-size: 13px; color: #1A1A1A; line-height: 1.7; padding: 10px 12px; border-radius: 8px; }
-    .copy-btn { width: calc(100% - 32px); padding: 12px; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; margin: 16px; display: block; background: #E8541A; color: #fff; }
-    .copy-btn.copied { background: #2A8C7E; }
-    .loading { background: #fff; border-radius: 10px; padding: 32px; text-align: center; }
-    .loading p { color: #888; font-size: 13px; margin-top: 8px; }
-    .hint { text-align: center; margin-top: 32px; color: #888; font-size: 13px; }
+    :root {
+      --orange: #E8541A;
+      --vert: #2A8C7E;
+      --noir: #0A0A0A;
+      --blanc: #F5F0EB;
+      --gris: #1C1C1C;
+      --gris2: #252525;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--noir); color: var(--blanc); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+    header { background: var(--gris); padding: 20px 24px; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; }
+    .logo span { color: var(--orange); }
+    .header-sub { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,240,235,0.4); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 32px 20px; }
+    .weeks { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+    .week-btn { padding: 8px 20px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: rgba(245,240,235,0.5); font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+    .week-btn.active { background: var(--orange); border-color: var(--orange); color: var(--blanc); }
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+    @media (max-width: 700px) { .layout { grid-template-columns: 1fr; } .result-panel { display: none; } .result-panel.visible { display: block; } }
+    .days-list { display: flex; flex-direction: column; gap: 6px; }
+    .day-card { background: var(--gris); border: 1.5px solid transparent; border-radius: 6px; padding: 14px 16px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.15s; }
+    .day-card:hover { border-color: rgba(232,84,26,0.3); }
+    .day-card.selected { border-color: var(--orange); background: var(--gris2); }
+    .day-num { min-width: 36px; height: 36px; border-radius: 4px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: rgba(245,240,235,0.5); flex-shrink: 0; transition: all 0.15s; }
+    .day-card.selected .day-num { background: var(--orange); color: var(--blanc); }
+    .day-info { flex: 1; min-width: 0; }
+    .day-tag { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 9px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+    .day-idea { font-size: 13px; color: rgba(245,240,235,0.8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .day-format { font-size: 11px; color: rgba(245,240,235,0.35); margin-top: 2px; }
+    .day-arrow { color: rgba(245,240,235,0.2); font-size: 18px; flex-shrink: 0; }
+    .day-card.selected .day-arrow { color: var(--orange); }
+    .result-panel { position: sticky; top: 80px; }
+    .result-empty { background: var(--gris); border-radius: 8px; padding: 60px 24px; text-align: center; color: rgba(245,240,235,0.3); font-size: 13px; font-style: italic; }
+    .result-card { background: var(--gris); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
+    .result-header { padding: 20px 22px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 14px; }
+    .result-day-badge { width: 44px; height: 44px; background: var(--orange); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 20px; flex-shrink: 0; }
+    .result-day-type { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 3px; }
+    .result-day-title { font-size: 14px; font-weight: 500; color: var(--blanc); }
+    .result-section { padding: 16px 22px 0; }
+    .result-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; font-weight: 500; margin-bottom: 8px; }
+    .result-content { font-size: 13px; font-weight: 300; line-height: 1.7; padding: 12px 14px; border-radius: 6px; background: rgba(255,255,255,0.04); color: rgba(245,240,235,0.85); }
+    .result-hashtags { font-size: 12px; color: var(--vert); line-height: 1.8; }
+    .result-tip { font-style: italic; color: rgba(245,240,235,0.5); }
+    .copy-btn { display: block; width: calc(100% - 44px); margin: 16px 22px 22px; padding: 13px; background: var(--orange); color: var(--blanc); border: none; border-radius: 4px; font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+    .copy-btn:hover { background: #d44a14; }
+    .copy-btn.copied { background: var(--vert); }
   </style>
 </head>
 <body>
-<div class="header">
-  <div style="max-width:800px;margin:0 auto">
-    <div class="label">Feat Club · Instagram</div>
-    <h1>Générateur de Posts IA</h1>
-    <p>Clique sur un jour → l'IA génère ton post complet</p>
+
+<header>
+  <div>
+    <div class="logo">FEAT<span>CLUB</span></div>
+    <div class="header-sub">Générateur de posts Instagram · 30 jours</div>
   </div>
-</div>
+</header>
+
 <div class="container">
   <div class="weeks" id="weeks"></div>
-  <div class="grid" id="grid">
-    <div id="days"></div>
-    <div id="result"></div>
+  <div class="layout">
+    <div><div class="days-list" id="days"></div></div>
+    <div class="result-panel" id="result-panel">
+      <div class="result-empty">← Clique sur un jour pour voir le post</div>
+    </div>
   </div>
-  <p class="hint" id="hint">← Clique sur un jour pour générer ton post</p>
 </div>
+
 <script>
-const agenda = [
-  {day:1,type:"Inspiration",color:"#FFF7ED",textColor:"#E8541A",border:"#FED7AA",idea:"Photo ambiance salle le matin",context:"Ambiance salle tôt le matin, énergie du début de journée"},
-  {day:2,type:"Conseil",color:"#F0FDF9",textColor:"#2A8C7E",border:"#99F6E4",idea:"3 erreurs classiques des débutants",context:"Mauvaise posture, trop lourd trop vite, négliger l'échauffement"},
-  {day:3,type:"Communauté",color:"#EFF6FF",textColor:"#1D4ED8",border:"#BFDBFE",idea:"Sondage : Cardio ou muscu ?",context:"Sondage interactif pour engager la communauté"},
-  {day:4,type:"Coulisses",color:"#FDF4FF",textColor:"#7E22CE",border:"#E9D5FF",idea:"Une journée type du coach",context:"Coulisses authentiques, préparation des séances"},
-  {day:5,type:"Promo",color:"#FFF1F2",textColor:"#BE123C",border:"#FECDD3",idea:"Séance d'essai gratuite",context:"Offre de bienvenue, Personal Training offert"},
-  {day:6,type:"Éducation",color:"#FFFBEB",textColor:"#B45309",border:"#FDE68A",idea:"S'échauffer en 5 minutes",context:"Mobilité articulaire, activation musculaire, cardio léger"},
-  {day:7,type:"Recap",color:"#F8FAFC",textColor:"#475569",border:"#CBD5E1",idea:"Recap de la semaine",context:"Chiffres de la semaine, moments forts"},
-  {day:8,type:"Témoignage",color:"#F0FDF4",textColor:"#15803D",border:"#BBF7D0",idea:"Résultats d'un membre après 1 mois",context:"Témoignage authentique, transformation physique et mentale"},
-  {day:9,type:"Conseil",color:"#F0FDF9",textColor:"#2A8C7E",border:"#99F6E4",idea:"Meilleur exercice pour les fessiers",context:"Hip thrust, squat, fentes"},
-  {day:10,type:"Inspiration",color:"#FFF7ED",textColor:"#E8541A",border:"#FED7AA",idea:"Citation motivante",context:"Citation forte sur la discipline et la régularité"},
-  {day:11,type:"Coulisses",color:"#FDF4FF",textColor:"#7E22CE",border:"#E9D5FF",idea:"Visite de la salle et équipements",context:"Tour rapide des équipements disponibles"},
-  {day:12,type:"Éducation",color:"#FFFBEB",textColor:"#B45309",border:"#FDE68A",idea:"Manger avant ou après la séance ?",context:"Nutrition péri-entraînement"},
-  {day:13,type:"Communauté",color:"#EFF6FF",textColor:"#1D4ED8",border:"#BFDBFE",idea:"Photo groupe cours collectif",context:"Énergie collective, esprit de communauté"},
-  {day:14,type:"Promo",color:"#FFF1F2",textColor:"#BE123C",border:"#FECDD3",idea:"Programme perte de poids",context:"Programme spécifique Feat Club"},
-  {day:15,type:"Communauté",color:"#EFF6FF",textColor:"#1D4ED8",border:"#BFDBFE",idea:"Ton objectif fitness ?",context:"Question ouverte pour engager la communauté"},
-  {day:16,type:"Conseil",color:"#F0FDF9",textColor:"#2A8C7E",border:"#99F6E4",idea:"5 aliments après le sport",context:"Récupération musculaire, protéines et glucides"},
-  {day:17,type:"Inspiration",color:"#FFF7ED",textColor:"#E8541A",border:"#FED7AA",idea:"Ambiance salle — énergie",context:"Vidéo courte et dynamique, membres en action"},
-  {day:18,type:"Éducation",color:"#FFFBEB",textColor:"#B45309",border:"#FDE68A",idea:"Muscles travaillés pendant le squat",context:"Infographie éducative, quadriceps, fessiers"},
-  {day:19,type:"Témoignage",color:"#F0FDF4",textColor:"#15803D",border:"#BBF7D0",idea:"Avis Google d'un membre",context:"Preuve sociale, avis positif authentique"},
-  {day:20,type:"Communauté",color:"#EFF6FF",textColor:"#1D4ED8",border:"#BFDBFE",idea:"Challenge du mois — les warriors",context:"Célébration des membres qui ont terminé le challenge"},
-  {day:21,type:"Promo",color:"#FFF1F2",textColor:"#BE123C",border:"#FECDD3",idea:"Offre parrainage",context:"Séance offerte pour le filleul, bonus pour le parrain"},
-  {day:22,type:"Coulisses",color:"#FDF4FF",textColor:"#7E22CE",border:"#E9D5FF",idea:"Préparation séance par le coach",context:"Playlist, programmation, mindset avant séance"},
-  {day:23,type:"Conseil",color:"#F0FDF9",textColor:"#2A8C7E",border:"#99F6E4",idea:"Rester motivé sans envie",context:"Routine, discipline vs motivation, petites victoires"},
-  {day:24,type:"Inspiration",color:"#FFF7ED",textColor:"#E8541A",border:"#FED7AA",idea:"Citation sur la discipline",context:"Citation puissante sur la constance"},
-  {day:25,type:"Éducation",color:"#FFFBEB",textColor:"#B45309",border:"#FDE68A",idea:"3 piliers : sommeil, nutrition, sport",context:"Triangle de la performance"},
-  {day:26,type:"Communauté",color:"#EFF6FF",textColor:"#1D4ED8",border:"#BFDBFE",idea:"Quel cours collectif rajouter ?",context:"Impliquer la communauté dans les décisions"},
-  {day:27,type:"Témoignage",color:"#F0FDF4",textColor:"#15803D",border:"#BBF7D0",idea:"Interview rapide d'un membre",context:"Pourquoi Feat Club, résultats obtenus"},
-  {day:28,type:"Promo",color:"#FFF1F2",textColor:"#BE123C",border:"#FECDD3",idea:"Offre limitée fin de mois",context:"Urgence, places limitées"},
-  {day:29,type:"Coulisses",color:"#FDF4FF",textColor:"#7E22CE",border:"#E9D5FF",idea:"Entretien de la salle",context:"Soin apporté à la propreté et au confort"},
-  {day:30,type:"Bilan",color:"#F8FAFC",textColor:"#475569",border:"#CBD5E1",idea:"Recap du mois complet",context:"Chiffres, moments forts, teaser du mois suivant"},
+const posts = [
+  {day:1,type:"Inspiration",format:"Post photo",color:"#FFF3ED",tc:"#C2410C",border:"#FED7AA",idea:"Photo ambiance salle le matin",legende:"5h30. La salle est silencieuse. La barre est froide. Et toi, tu es déjà là. 🖤\n\nCeux qui savent, savent — la journée se gagne avant même qu'elle commence.\n\nBienvenue chez Feat Club.",cta:"Tu veux vivre ça ? Réserve ta séance d'essai gratuite en bio 👆",hashtags:"#FeatClub #BackToBasics #BoulogneBillancourt #PersonalTraining #CoachingSportif #MorningWorkout #FeatnessNotFitness #StudioSport",conseil:"Photo en lumière naturelle rasante, angle large avec un seul athlète en action."},
+  {day:2,type:"Conseil",format:"Carrousel",color:"#F0FDF9",tc:"#0F766E",border:"#99F6E4",idea:"3 erreurs classiques des débutants",legende:"Tu débutes en salle ? Évite ces 3 erreurs que tout le monde fait. 👇\n\n1️⃣ Trop lourd trop vite — l'ego avant la technique, c'est la blessure garantie.\n2️⃣ Négliger l'échauffement — 5 minutes qui changent tout.\n3️⃣ S'entraîner sans objectif — sans plan, pas de progression.\n\nSwipe pour les détails.",cta:"Tu veux un programme sur mesure ? DM ou lien en bio 🎯",hashtags:"#FeatClub #ConseilSport #Débutant #PersonalTraining #CoachSportif #Musculation #BackToBasics #BoulogneSport",conseil:"Carrousel 5 slides : slide 1 accroche, slides 2-4 une erreur par slide, slide 5 CTA."},
+  {day:3,type:"Communauté",format:"Story",color:"#EFF6FF",tc:"#1D4ED8",border:"#BFDBFE",idea:"Sondage : Cardio ou muscu ?",legende:"Le débat éternel chez Feat Club... 😅\n\nCardio ou muscu, t'es dans quel camp ? Vote en story 👇\n\nSpoiler : la vraie réponse, c'est les deux. Mais chut.",cta:"Résultats demain en story !",hashtags:"#FeatClub #Cardio #Musculation #CoachSportif #Sondage #FitnessFrançais #BoulogneBillancourt #SportMotivation",conseil:"Story interactive avec sondage. Fond vert ou orange Feat Club."},
+  {day:4,type:"Coulisses",format:"Réel",color:"#FDF4FF",tc:"#7E22CE",border:"#E9D5FF",idea:"Une journée type du coach",legende:"Ce que personne ne voit avant que tu arrives en séance. 🎬\n\n6h — Réveil, session perso.\n8h — Premiers clients.\n12h — Programme + nutrition.\n18h — Rush du soir.\n21h — Bilan de la journée.\n\nLe coaching, c'est un mode de vie.",cta:"Tu veux coacher avec nous ? On recrute. DM 📩",hashtags:"#FeatClub #CoachSportif #Coaching #Coulisses #PersonalTrainer #BackToBasics #VieDeCoach #BoulogneBillancourt",conseil:"Réel dynamique, montage rapide, musique énergique. 30-45 secondes max."},
+  {day:5,type:"Promo",format:"Post visuel",color:"#FFF1F2",tc:"#BE123C",border:"#FECDD3",idea:"Séance d'essai gratuite",legende:"Ta première séance chez Feat Club est OFFERTE. 🎁\n\nPersonal Training · 1h · Coach dédié · Bilan inclus.\n\nPas d'engagement. Pas de surprise. Juste toi, ton coach et tes objectifs.",cta:"Réserve maintenant → lien en bio 👆",hashtags:"#FeatClub #SéanceOfferte #PersonalTraining #BoulogneBillancourt #CoachSportif #BackToBasics #GratuitSport #FeatnessNotFitness",conseil:"Visuel fort : fond orange, texte blanc, logo Feat Club."},
+  {day:6,type:"Éducation",format:"Carrousel",color:"#FFFBEB",tc:"#B45309",border:"#FDE68A",idea:"S'échauffer en 5 minutes",legende:"L'échauffement, c'est pas optionnel. C'est 50% de ta séance. 🔥\n\nVoilà comment le faire bien en 5 minutes :\n\n➡️ 2 min mobilité articulaire\n➡️ 2 min activation musculaire\n➡️ 1 min cardio léger\n\nSwipe pour la routine complète.",cta:"Sauve ce post pour ta prochaine séance 📌",hashtags:"#FeatClub #Échauffement #CoachSportif #SportConseil #Musculation #BoulogneSport #BackToBasics #FitnessFrance",conseil:"Carrousel éducatif avec illustrations simples. Fond blanc, accent orange."},
+  {day:7,type:"Recap",format:"Story",color:"#F8FAFC",tc:"#475569",border:"#CBD5E1",idea:"Recap de la semaine",legende:"La semaine 1 en chiffres chez Feat Club 📊\n\n✅ Séances dispensées : 24\n✅ Nouveaux membres : 3\n✅ Kilos soulevés : on préfère pas savoir 😅\n\nMerci à tous ceux qui poussent avec nous.",cta:"La semaine prochaine, on remet ça 💪",hashtags:"#FeatClub #WeekRecap #CoachSportif #BoulogneBillancourt #BackToBasics #Communauté #SportEnsemble #FeatnessNotFitness",conseil:"Story animée avec chiffres qui apparaissent. Fond sombre, chiffres en orange."},
+  {day:8,type:"Témoignage",format:"Post photo",color:"#F0FDF4",tc:"#15803D",border:"#BBF7D0",idea:"Résultats d'un membre après 1 mois",legende:"\"Je pensais pas tenir 1 mois. Maintenant je peux plus m'en passer.\" — Lucas, 28 ans 🙏\n\n+4kg de muscle. -3% de masse grasse. Mais surtout : une confiance qu'il avait perdue.\n\nC'est ça Feat Club.",cta:"Tu veux écrire ta propre histoire ? 1ère séance offerte en bio 👆",hashtags:"#FeatClub #Témoignage #Transformation #PersonalTraining #Résultats #CoachSportif #BackToBasics #BoulogneBillancourt",conseil:"Photo avant/après ou portrait du membre avec accord. Citation en overlay."},
+  {day:9,type:"Conseil",format:"Réel",color:"#F0FDF9",tc:"#0F766E",border:"#99F6E4",idea:"Meilleur exercice pour les fessiers",legende:"La question qu'on me pose 10 fois par semaine... 😂\n\nMeilleur exercice pour les fessiers ?\n\nSpoiler : c'est pas le squat. C'est le hip thrust. Et voilà comment le faire correctement 👇",cta:"Sauve ce réel et essaie dès ta prochaine séance 💪",hashtags:"#FeatClub #Fessiers #HipThrust #CoachSportif #ConseilSport #Musculation #FitnessFrançais #BoulogneSport",conseil:"Réel démonstratif avec coach. Vue de profil pour montrer la technique."},
+  {day:10,type:"Inspiration",format:"Visuel",color:"#FFF3ED",tc:"#C2410C",border:"#FED7AA",idea:"Citation motivante",legende:"\"La discipline, c'est choisir entre ce que tu veux maintenant et ce que tu veux le plus.\" 💎\n\nCette phrase, on l'a mise sur le mur de la salle.\n\nBack to Basics.",cta:"Tague quelqu'un qui en a besoin 👇",hashtags:"#FeatClub #Motivation #Discipline #BackToBasics #CitationSport #FeatnessNotFitness #CoachSportif #BoulogneBillancourt",conseil:"Visuel épuré : fond noir, texte blanc, accent orange. Police Bebas Neue."},
+  {day:11,type:"Coulisses",format:"Story",color:"#FDF4FF",tc:"#7E22CE",border:"#E9D5FF",idea:"Visite de la salle et équipements",legende:"Tu connais pas encore notre salle ? On te fait le tour. 🏋️\n\n→ Zone free weights\n→ Espace Cross Training\n→ Salle Pilates\n→ Vestiaires propres\n\nPetit espace, grand impact.",cta:"Viens voir par toi-même → lien en bio",hashtags:"#FeatClub #StudioSport #BoulogneBillancourt #PersonalTraining #BackToBasics #SalleDeSport #CoachSportif #VisiteGuidée",conseil:"Série de stories avec transition fluide. Texte descriptif sur chaque espace."},
+  {day:12,type:"Éducation",format:"Carrousel",color:"#FFFBEB",tc:"#B45309",border:"#FDE68A",idea:"Manger avant ou après la séance ?",legende:"Le débat nutrition qu'on tranche une bonne fois pour toutes. 🍽️\n\nAvant : glucides rapides 30-60 min avant. Pas de gras, pas de fibre.\nAprès : protéines + glucides dans les 30 minutes.\n\nSwipe pour le détail complet.",cta:"Sauve ce post, ça va changer tes séances 📌",hashtags:"#FeatClub #Nutrition #SportNutrition #ConseilSport #Musculation #FitnessFrançais #BackToBasics #CoachSportif",conseil:"Carrousel avec infographie claire. Code couleur : vert = oui, rouge = non."},
+  {day:13,type:"Communauté",format:"Post photo",color:"#EFF6FF",tc:"#1D4ED8",border:"#BFDBFE",idea:"Photo de groupe après un cours collectif",legende:"Ces gens-là, c'est la famille Feat Club. 🤝\n\nCe matin, 6h45, après un Cross Training qui a tout donné.\nSueurs, effort, sourires.\n\nC'est pour ça qu'on fait ce métier.",cta:"Rejoins la famille → séance d'essai gratuite en bio 👆",hashtags:"#FeatClub #Communauté #CrossTraining #BoulogneBillancourt #BackToBasics #SportCollectif #FeatnessNotFitness #GroupeFit",conseil:"Photo naturelle post-séance. Ambiance authentique. Sourires, transpiration visible."},
+  {day:14,type:"Promo",format:"Réel",color:"#FFF1F2",tc:"#BE123C",border:"#FECDD3",idea:"Programme perte de poids",legende:"Tu veux perdre du poids durablement ? 🎯\n\nOublie les régimes. Voilà ce qui marche vraiment :\n\n✅ Programme cardio/muscu adapté\n✅ Suivi nutritionnel personnalisé\n✅ Coach dédié qui ajuste semaine après semaine",cta:"Places limitées. DM 'TRANSFORMATION' pour info 📩",hashtags:"#FeatClub #PertesDePoids #Transformation #PersonalTraining #CoachSportif #BackToBasics #BoulogneBillancourt #FeatnessNotFitness",conseil:"Réel avec témoignage ou démonstration du programme."},
+  {day:15,type:"Communauté",format:"Story",color:"#EFF6FF",tc:"#1D4ED8",border:"#BFDBFE",idea:"Question ouverte sur les objectifs fitness",legende:"On veut savoir 👇\n\nC'est quoi ton objectif fitness du moment ?\n\n💪 Prendre du muscle\n🔥 Perdre du gras\n🏃 Améliorer mon endurance\n⚡ Me sentir mieux dans ma tête",cta:"Les meilleures réponses en story demain !",hashtags:"#FeatClub #ObjectifSport #Communauté #BackToBasics #CoachSportif #BoulogneSport #FitnessFrançais #Motivation",conseil:"Story avec case question ouverte. Fond vert Feat Club."},
+  {day:16,type:"Conseil",format:"Carrousel",color:"#F0FDF9",tc:"#0F766E",border:"#99F6E4",idea:"5 aliments à manger après le sport",legende:"Bien manger après la séance, c'est 50% du résultat. 🥗\n\nNos 5 aliments indispensables :\n\n1️⃣ Blanc de poulet\n2️⃣ Riz basmati\n3️⃣ Banane\n4️⃣ Œufs entiers\n5️⃣ Fromage blanc 0%",cta:"Sauve ce post avant de faire tes courses 🛒",hashtags:"#FeatClub #Nutrition #Récupération #SportNutrition #ConseilSport #BackToBasics #FitnessFrançais #CoachSportif",conseil:"Carrousel avec une photo d'aliment par slide. Fond blanc, accent vert."},
+  {day:17,type:"Inspiration",format:"Réel",color:"#FFF3ED",tc:"#C2410C",border:"#FED7AA",idea:"Ambiance salle — énergie et motivation",legende:"C'est des moments comme ça qui donnent envie de revenir. 🔥\n\nL'ambiance Feat Club, c'est pas du décor. C'est de l'énergie pure.\n\nFeatness, not Fitness.",cta:"On t'attend. Réserve ton créneau en bio 👆",hashtags:"#FeatClub #Ambiance #BackToBasics #PersonalTraining #BoulogneBillancourt #SportMotivation #FeatnessNotFitness #StudioSport",conseil:"Réel dynamique de 15-30s. Montage cut, musique forte."},
+  {day:18,type:"Éducation",format:"Visuel",color:"#FFFBEB",tc:"#B45309",border:"#FDE68A",idea:"Muscles travaillés pendant le squat",legende:"Le squat, c'est le roi des exercices. Et voilà pourquoi. 👑\n\n→ Quadriceps\n→ Ischio-jambiers\n→ Fessiers\n→ Dos lombaire\n→ Abdominaux\n\nUn seul mouvement, tout le corps travaille.",cta:"Sauve ce post pour expliquer à tes amis 💪",hashtags:"#FeatClub #Squat #Anatomie #ConseilSport #Musculation #BackToBasics #FitnessFrançais #CoachSportif",conseil:"Infographie anatomique du squat. Flèches colorées sur les muscles."},
+  {day:19,type:"Témoignage",format:"Story",color:"#F0FDF4",tc:"#15803D",border:"#BBF7D0",idea:"Avis Google d'un membre",legende:"Quand nos membres parlent mieux que nous. 🙏\n\n⭐⭐⭐⭐⭐ — Sarah G.\n\"Le meilleur investissement que j'ai fait pour ma santé. Coach à l'écoute, résultats visibles en 3 semaines.\"\n\nMerci Sarah ❤️",cta:"Ton avis nous aide à grandir → Google Maps en bio",hashtags:"#FeatClub #Avis #Google #PersonalTraining #BoulogneBillancourt #BackToBasics #Témoignage #CoachSportif",conseil:"Story avec screenshot stylisé de l'avis Google. Étoiles en orange."},
+  {day:20,type:"Communauté",format:"Post photo",color:"#EFF6FF",tc:"#1D4ED8",border:"#BFDBFE",idea:"Challenge du mois — les warriors",legende:"Le challenge du mois touche à sa fin. 🏆\n\nCes warriors-là ont tenu 4 semaines sans faillir.\n30 jours de discipline. De sueur. De progression.\n\nOn est fiers de vous. 🙏",cta:"Le prochain challenge commence lundi. T'es partant ? DM 'CHALLENGE'",hashtags:"#FeatClub #Challenge #Warriors #Discipline #BackToBasics #BoulogneBillancourt #SportCollectif #FeatnessNotFitness",conseil:"Photo de groupe des participants. Ambiance célébration."},
+  {day:21,type:"Promo",format:"Visuel",color:"#FFF1F2",tc:"#BE123C",border:"#FECDD3",idea:"Offre parrainage",legende:"Ton ami cherche un coach ? Tu as une offre pour lui. 🎁\n\n→ Amène un ami chez Feat Club\n→ Sa 1ère séance est offerte\n→ Toi tu gagnes une séance gratuite\n\nEverybody wins. 🤝",cta:"Tague ton ami en commentaire 👇",hashtags:"#FeatClub #Parrainage #SéanceOfferte #PersonalTraining #BoulogneBillancourt #BackToBasics #CoachSportif #FeatnessNotFitness",conseil:"Visuel clair avec les conditions. Fond orange, texte blanc."},
+  {day:22,type:"Coulisses",format:"Réel",color:"#FDF4FF",tc:"#7E22CE",border:"#E9D5FF",idea:"Préparation séance par le coach",legende:"Ce qui se passe avant que tu arrives. 🎧\n\nPlaylist choisie. Programme révisé. Matériel préparé.\nTon coach pense à ta séance avant même que tu te lèves.\n\nC'est ça le Personal Training chez Feat Club.",cta:"Tu mérites ce niveau d'attention → séance d'essai gratuite en bio",hashtags:"#FeatClub #PersonalTraining #Coach #Coulisses #BackToBasics #BoulogneSport #CoachSportif #Préparation",conseil:"Réel POV du coach en train de préparer. Ambiance intimiste."},
+  {day:23,type:"Conseil",format:"Carrousel",color:"#F0FDF9",tc:"#0F766E",border:"#99F6E4",idea:"Comment rester motivé quand t'as pas envie",legende:"La motivation, ça dure 3 jours. La discipline, une vie. 💎\n\n1️⃣ Rappelle-toi pourquoi tu as commencé\n2️⃣ Réduis l'objectif du jour (juste 20 minutes)\n3️⃣ Appelle ton coach\n4️⃣ Célèbre les petites victoires",cta:"Sauve ce post pour le jour où ça va moins 📌",hashtags:"#FeatClub #Motivation #Discipline #BackToBasics #ConseilSport #Mindset #CoachSportif #FitnessFrançais",conseil:"Carrousel avec une technique par slide. Citations en grand format."},
+  {day:24,type:"Inspiration",format:"Visuel",color:"#FFF3ED",tc:"#C2410C",border:"#FED7AA",idea:"Citation sur la discipline",legende:"\"La constance, c'est faire les choses même quand personne ne regarde.\" 🖤\n\nC'est dans les séances ordinaires que se construisent les résultats extraordinaires.\n\nBack to Basics.",cta:"Tague quelqu'un qui a besoin d'entendre ça 👇",hashtags:"#FeatClub #Constance #Discipline #BackToBasics #Motivation #FeatnessNotFitness #CoachSportif #CitationSport",conseil:"Fond noir. Citation en blanc, accent orange. Typographie Bebas Neue."},
+  {day:25,type:"Éducation",format:"Visuel",color:"#FFFBEB",tc:"#B45309",border:"#FDE68A",idea:"Les 3 piliers : sommeil, nutrition, entraînement",legende:"Tu peux t'entraîner 7j/7 — si ces 3 piliers ne sont pas là, tu n'avanceras pas. 🔺\n\n😴 SOMMEIL : 7-9h. C'est là que ton corps reconstruit.\n🥗 NUTRITION : carburant = résultats.\n💪 ENTRAÎNEMENT : régulier, progressif, adapté.\n\nLes 3 ou rien.",cta:"Sauve ce post 📌",hashtags:"#FeatClub #Performance #Sommeil #Nutrition #Entraînement #BackToBasics #CoachSportif #FitnessFrançais",conseil:"Infographie triangle avec les 3 piliers. Chaque pilier a sa couleur."},
+  {day:26,type:"Communauté",format:"Story",color:"#EFF6FF",tc:"#1D4ED8",border:"#BFDBFE",idea:"Sondage : quel cours collectif rajouter ?",legende:"On pense à agrandir notre offre collective 👀\n\nQuel cours tu voudrais voir chez Feat Club ?\n\n🥊 Muay Thai\n🧘 Yoga Flow\n🏋️ Haltérophilie\n🤸 Calisthenics",cta:"Vote en story et partage à tes amis sportifs 👇",hashtags:"#FeatClub #NouveauCours #Communauté #BoulogneBillancourt #BackToBasics #SportCollectif #VotreAvis #FeatnessNotFitness",conseil:"Story sondage avec les 4 options. Résultats en story suivante."},
+  {day:27,type:"Témoignage",format:"Réel",color:"#F0FDF4",tc:"#15803D",border:"#BBF7D0",idea:"Interview rapide d'un membre",legende:"On a demandé à Marie pourquoi elle a choisi Feat Club. 🎙️\n\n\"Avant j'allais en salle sans vraiment savoir ce que je faisais. Là, en 2 mois, j'ai enfin compris comment mon corps fonctionne.\"\n\nC'est ça la différence avec un coach.",cta:"Ta transformation commence ici → séance d'essai gratuite en bio 👆",hashtags:"#FeatClub #Témoignage #Interview #PersonalTraining #BoulogneBillancourt #BackToBasics #CoachSportif #Transformation",conseil:"Réel interview face caméra, 30-60 secondes. Sous-titres obligatoires."},
+  {day:28,type:"Promo",format:"Visuel",color:"#FFF1F2",tc:"#BE123C",border:"#FECDD3",idea:"Offre limitée fin de mois",legende:"⏰ Plus que 3 jours pour profiter de l'offre du mois.\n\nPack 10 séances Personal Training → 700€ au lieu de 800€.\n\nC'est le moment ou jamais. 🎯",cta:"DM 'PACK' pour réserver → places limitées 📩",hashtags:"#FeatClub #OffreLimitée #PersonalTraining #BoulogneBillancourt #BackToBasics #Promo #CoachSportif #FeatnessNotFitness",conseil:"Visuel avec urgence visuelle. Fond orange fort, texte blanc."},
+  {day:29,type:"Coulisses",format:"Story",color:"#FDF4FF",tc:"#7E22CE",border:"#E9D5FF",idea:"Entretien et nettoyage de la salle",legende:"Feat Club propre et prêt pour vous accueillir demain. 🧹✨\n\nParce qu'une bonne séance commence dans un bon environnement.\n\nÀ demain.",cta:"On vous attend dès 7h 💪",hashtags:"#FeatClub #Entretien #Propreté #BackToBasics #StudioSport #BoulogneBillancourt #CoachSportif #Soin",conseil:"Story courte et authentique. Vidéo du nettoyage en accéléré."},
+  {day:30,type:"Bilan",format:"Carrousel",color:"#F8FAFC",tc:"#475569",border:"#CBD5E1",idea:"Recap du mois complet",legende:"30 jours de Feat Club en images. 🙏\n\nCe mois-ci :\n→ 180 séances dispensées\n→ 12 nouveaux membres\n→ 3 transformations remarquables\n→ 1 communauté qui grandit\n\nMerci à chacun d'entre vous. 🔥",cta:"Partage ce post si Feat Club fait partie de ta vie 👇",hashtags:"#FeatClub #Bilan #Recap #BackToBasics #BoulogneBillancourt #Communauté #PersonalTraining #FeatnessNotFitness",conseil:"Carrousel avec les moments forts du mois. Dernier slide = teaser du mois suivant."}
 ];
-let activeWeek=0,selectedDay=null,currentPost=null;
+
+const typeColors = {"Inspiration":{bg:"#FFF3ED",tc:"#C2410C",border:"#FED7AA"},"Conseil":{bg:"#F0FDF9",tc:"#0F766E",border:"#99F6E4"},"Communauté":{bg:"#EFF6FF",tc:"#1D4ED8",border:"#BFDBFE"},"Coulisses":{bg:"#FDF4FF",tc:"#7E22CE",border:"#E9D5FF"},"Promo":{bg:"#FFF1F2",tc:"#BE123C",border:"#FECDD3"},"Éducation":{bg:"#FFFBEB",tc:"#B45309",border:"#FDE68A"},"Témoignage":{bg:"#F0FDF4",tc:"#15803D",border:"#BBF7D0"},"Recap":{bg:"#F8FAFC",tc:"#475569",border:"#CBD5E1"},"Bilan":{bg:"#F8FAFC",tc:"#475569",border:"#CBD5E1"}};
+
+let activeWeek=0,selectedDay=null;
+
 function renderWeeks(){document.getElementById('weeks').innerHTML=['Semaine 1','Semaine 2','Semaine 3','Semaine 4'].map((w,i)=>`<button class="week-btn ${i===activeWeek?'active':''}" onclick="setWeek(${i})">${w}</button>`).join('');}
 function setWeek(i){activeWeek=i;renderWeeks();renderDays();}
-function renderDays(){const start=activeWeek*7;const days=agenda.slice(start,start+(activeWeek===3?9:7));document.getElementById('days').innerHTML=days.map(item=>`<div class="day-card ${selectedDay===item.day?'selected':''}" onclick="generate(${item.day})"><div class="day-num">J${item.day}</div><div class="day-info"><span class="day-tag" style="background:${item.color};color:${item.textColor};border:1px solid ${item.border}">${item.type}</span><div class="day-idea">${item.idea}</div></div><div class="arrow">→</div></div>`).join('');}
-async function generate(day){
+function renderDays(){const start=activeWeek*7;const days=posts.slice(start,start+(activeWeek===3?9:7));document.getElementById('days').innerHTML=days.map(p=>{const c=typeColors[p.type]||typeColors["Recap"];return`<div class="day-card ${selectedDay===p.day?'selected':''}" onclick="showPost(${p.day})"><div class="day-num">J${p.day}</div><div class="day-info"><span class="day-tag" style="background:${c.bg};color:${c.tc};border:0.5px solid ${c.border}">${p.type}</span><div class="day-idea">${p.idea}</div><div class="day-format">${p.format}</div></div><div class="day-arrow">›</div></div>`;}).join('');}
+
+function showPost(day){
   selectedDay=day;renderDays();
-  document.getElementById('hint').style.display='none';
-  document.getElementById('grid').classList.add('has-result');
-  const item=agenda.find(a=>a.day===day);
-  document.getElementById('result').innerHTML=`<div class="result-header"><div class="day-label">Jour ${item.day} · ${item.type}</div><div class="day-title">${item.idea}</div></div><div class="loading"><div style="font-size:28px">✨</div><p>L'IA génère ton post...</p></div>`;
-  try{
-    const response=await fetch('https://hook.eu1.make.com/cp8l5wjm3qxpm4f57citvkxxt2rgwnv4',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({item})
-    });
-    const text=await response.text();
-    currentPost=JSON.parse(text.replace(/```json|```/g,'').trim());
-    renderResult(item,currentPost);
-  }catch(e){
-    document.getElementById('result').innerHTML=`<div class="loading"><p>Erreur. Réessaie.</p></div>`;
-  }
+  const p=posts.find(x=>x.day===day);
+  document.getElementById('result-panel').classList.add('visible');
+  document.getElementById('result-panel').innerHTML=`<div class="result-card"><div class="result-header"><div class="result-day-badge">J${p.day}</div><div><div class="result-day-type">${p.type} · ${p.format}</div><div class="result-day-title">${p.idea}</div></div></div><div class="result-section"><div class="result-label" style="color:#2A8C7E">📝 Légende</div><div class="result-content">${p.legende.replace(/\n/g,'<br>')}</div></div><div class="result-section"><div class="result-label" style="color:#E8541A">🎯 Appel à l'action</div><div class="result-content">${p.cta}</div></div><div class="result-section"><div class="result-label" style="color:#888">🏷️ Hashtags</div><div class="result-content result-hashtags">${p.hashtags}</div></div><div class="result-section" style="padding-bottom:0"><div class="result-label" style="color:#7E22CE">📸 Conseil visuel</div><div class="result-content result-tip">${p.conseil}</div></div><button class="copy-btn" id="copy-btn" onclick="copyPost(${p.day})">Copier le post complet</button></div>`;
+  if(window.innerWidth<=700)document.getElementById('result-panel').scrollIntoView({behavior:'smooth'});
 }
-function renderResult(item,post){document.getElementById('result').innerHTML=`<div class="result-header"><div class="day-label">Jour ${item.day} · ${item.type}</div><div class="day-title">${item.idea}</div></div><div class="result-card"><div class="result-section"><div class="result-label" style="color:#2A8C7E">📝 Légende</div><div class="result-content" style="background:#F4F4F4">${post.legende}</div></div>${post.cta?`<div class="result-section"><div class="result-label" style="color:#E8541A">🎯 Appel à l'action</div><div class="result-content" style="background:#FFF7ED">${post.cta}</div></div>`:''} ${post.hashtags?`<div class="result-section"><div class="result-label" style="color:#888">🏷️ Hashtags</div><div class="result-content" style="background:#F0FDF9;color:#2A8C7E">${post.hashtags}</div></div>`:''} ${post.conseil_visuel?`<div class="result-section"><div class="result-label" style="color:#7E22CE">📸 Conseil visuel</div><div class="result-content" style="background:#FDF4FF;font-style:italic">${post.conseil_visuel}</div></div>`:''} ${post.meilleur_moment?`<div class="result-section"><div class="result-label" style="color:#B45309">⏰ Meilleur moment</div><div class="result-content" style="background:#FFFBEB">${post.meilleur_moment}</div></div>`:''}<button class="copy-btn" id="copyBtn" onclick="copyPost()">Copier le post complet</button></div>`;}
-function copyPost(){if(!currentPost)return;navigator.clipboard.writeText(`${currentPost.legende}\n\n${currentPost.cta}\n\n${currentPost.hashtags}`);const btn=document.getElementById('copyBtn');btn.textContent='✓ Copié !';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copier le post complet';btn.classList.remove('copied');},2000);}
+
+function copyPost(day){const p=posts.find(x=>x.day===day);navigator.clipboard.writeText(`${p.legende}\n\n${p.cta}\n\n${p.hashtags}`);const btn=document.getElementById('copy-btn');btn.textContent='✓ Copié !';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copier le post complet';btn.classList.remove('copied');},2000);}
+
 renderWeeks();renderDays();
 </script>
 </body>
