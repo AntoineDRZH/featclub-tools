@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feat Club — Générateur de Posts</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: sans-serif; background: #F4F4F4; min-height: 100vh; }
+    .header { background: #1A1A1A; padding: 24px; position: relative; overflow: hidden; }
+    .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #E8541A, #2A8C7E); }
+    .header h1 { color: #fff; font-size: 22px; margin-bottom: 4px; }
+    .header p { color: #888; font-size: 13px; }
+    .header .label { font-size: 10px; letter-spacing: 4px; color: #E8541A; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+    .container { max-width: 800px; margin: 0 auto; padding: 24px; }
+    .weeks { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .week-btn { padding: 7px 16px; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 700; background: #fff; color: #888; transition: all 0.2s; }
+    .week-btn.active { background: #E8541A; color: #fff; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media(min-width: 600px) { .grid.has-result { grid-template-columns: 1fr 1fr; } }
+    .day-card { background: #fff; border-radius: 10px; padding: 12px 14px; cursor: pointer; border: 2px solid transparent; box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: all 0.15s; display: flex; align-items: center; gap: 10px; }
+    .day-card:hover { border-color: #E8541A40; }
+    .day-card.selected { border-color: #E8541A; }
+    .day-num { min-width: 34px; height: 34px; border-radius: 7px; background: #F4F4F4; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #888; transition: all 0.15s; }
+    .day-card.selected .day-num { background: #E8541A; color: #fff; }
+    .day-info { flex: 1; }
+    .day-tag { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 600; margin-bottom: 3px; }
+    .day-idea { font-size: 13px; color: #1A1A1A; }
+    .arrow { color: #ccc; font-size: 16px; }
+    .day-card.selected .arrow { color: #E8541A; }
+    .result-panel { position: sticky; top: 16px; }
+    .result-header { background: #fff; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; border: 1px solid #E8541A20; }
+    .result-header .day-label { font-size: 10px; letter-spacing: 3px; color: #E8541A; text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
+    .result-header .day-title { font-size: 14px; color: #1A1A1A; font-weight: 600; }
+    .result-card { background: #fff; border-radius: 10px; overflow: hidden; }
+    .result-section { padding: 14px 16px 0; }
+    .result-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+    .result-content { font-size: 13px; color: #1A1A1A; line-height: 1.7; padding: 10px 12px; border-radius: 8px; }
+    .copy-btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; margin: 16px; width: calc(100% - 32px); transition: all 0.2s; background: #E8541A; color: #fff; }
+    .copy-btn.copied { background: #2A8C7E; }
+    .loading { background: #fff; border-radius: 10px; padding: 32px; text-align: center; }
+    .loading p { color: #888; font-size: 13px; margin-top: 8px; }
+    .hint { text-align: center; margin-top: 32px; color: #888; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div style="max-width:800px;margin:0 auto">
+    <div class="label">Feat Club · Instagram</div>
+    <h1>Générateur de Posts IA</h1>
+    <p>Clique sur un jour → l'IA génère ton post complet</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="weeks" id="weeks"></div>
+  <div class="grid" id="grid">
+    <div id="days"></div>
+    <div id="result"></div>
+  </div>
+  <p class="hint" id="hint">← Clique sur un jour pour générer ton post</p>
+</div>
+
+<script>
+const agenda = [
+  { day:1, type:"Inspiration", color:"#FFF7ED", textColor:"#E8541A", border:"#FED7AA", idea:"Photo ambiance salle le matin", context:"Ambiance salle tôt le matin, énergie du début de journée" },
+  { day:2, type:"Conseil", color:"#F0FDF9", textColor:"#2A8C7E", border:"#99F6E4", idea:"3 erreurs classiques des débutants", context:"Mauvaise posture, trop lourd trop vite, négliger l'échauffement" },
+  { day:3, type:"Communauté", color:"#EFF6FF", textColor:"#1D4ED8", border:"#BFDBFE", idea:"Sondage : Cardio ou muscu ?", context:"Sondage interactif pour engager la communauté" },
+  { day:4, type:"Coulisses", color:"#FDF4FF", textColor:"#7E22CE", border:"#E9D5FF", idea:"Une journée type du coach", context:"Coulisses authentiques, préparation des séances" },
+  { day:5, type:"Promo", color:"#FFF1F2", textColor:"#BE123C", border:"#FECDD3", idea:"Séance d'essai gratuite", context:"Offre de bienvenue, Personal Training offert" },
+  { day:6, type:"Éducation", color:"#FFFBEB", textColor:"#B45309", border:"#FDE68A", idea:"S'échauffer en 5 minutes", context:"Mobilité articulaire, activation musculaire, cardio léger" },
+  { day:7, type:"Recap", color:"#F8FAFC", textColor:"#475569", border:"#CBD5E1", idea:"Recap de la semaine", context:"Chiffres de la semaine, moments forts" },
+  { day:8, type:"Témoignage", color:"#F0FDF4", textColor:"#15803D", border:"#BBF7D0", idea:"Résultats d'un membre après 1 mois", context:"Témoignage authentique, transformation physique et mentale" },
+  { day:9, type:"Conseil", color:"#F0FDF9", textColor:"#2A8C7E", border:"#99F6E4", idea:"Meilleur exercice pour les fessiers", context:"Hip thrust, squat, fentes — lequel choisir" },
+  { day:10, type:"Inspiration", color:"#FFF7ED", textColor:"#E8541A", border:"#FED7AA", idea:"Citation motivante", context:"Citation forte sur la discipline et la régularité" },
+  { day:11, type:"Coulisses", color:"#FDF4FF", textColor:"#7E22CE", border:"#E9D5FF", idea:"Visite de la salle et équipements", context:"Tour rapide des équipements disponibles" },
+  { day:12, type:"Éducation", color:"#FFFBEB", textColor:"#B45309", border:"#FDE68A", idea:"Manger avant ou après la séance ?", context:"Nutrition péri-entraînement, timing et types d'aliments" },
+  { day:13, type:"Communauté", color:"#EFF6FF", textColor:"#1D4ED8", border:"#BFDBFE", idea:"Photo groupe cours collectif", context:"Énergie collective, esprit de communauté" },
+  { day:14, type:"Promo", color:"#FFF1F2", textColor:"#BE123C", border:"#FECDD3", idea:"Programme perte de poids", context:"Programme spécifique Feat Club pour perdre du poids" },
+  { day:15, type:"Communauté", color:"#EFF6FF", textColor:"#1D4ED8", border:"#BFDBFE", idea:"Ton objectif fitness ?", context:"Question ouverte pour engager la communauté" },
+  { day:16, type:"Conseil", color:"#F0FDF9", textColor:"#2A8C7E", border:"#99F6E4", idea:"5 aliments après le sport", context:"Récupération musculaire, protéines et glucides" },
+  { day:17, type:"Inspiration", color:"#FFF7ED", textColor:"#E8541A", border:"#FED7AA", idea:"Ambiance salle — énergie", context:"Vidéo courte et dynamique, membres en action" },
+  { day:18, type:"Éducation", color:"#FFFBEB", textColor:"#B45309", border:"#FDE68A", idea:"Muscles travaillés pendant le squat", context:"Infographie éducative, quadriceps, fessiers" },
+  { day:19, type:"Témoignage", color:"#F0FDF4", textColor:"#15803D", border:"#BBF7D0", idea:"Avis Google d'un membre", context:"Preuve sociale, avis positif authentique" },
+  { day:20, type:"Communauté", color:"#EFF6FF", textColor:"#1D4ED8", border:"#BFDBFE", idea:"Challenge du mois — les warriors", context:"Célébration des membres qui ont terminé le challenge" },
+  { day:21, type:"Promo", color:"#FFF1F2", textColor:"#BE123C", border:"#FECDD3", idea:"Offre parrainage", context:"Séance offerte pour le filleul, bonus pour le parrain" },
+  { day:22, type:"Coulisses", color:"#FDF4FF", textColor:"#7E22CE", border:"#E9D5FF", idea:"Préparation séance par le coach", context:"Playlist, programmation, mindset avant séance" },
+  { day:23, type:"Conseil", color:"#F0FDF9", textColor:"#2A8C7E", border:"#99F6E4", idea:"Rester motivé sans envie", context:"Routine, discipline vs motivation, petites victoires" },
+  { day:24, type:"Inspiration", color:"#FFF7ED", textColor:"#E8541A", border:"#FED7AA", idea:"Citation sur la discipline", context:"Citation puissante sur la constance" },
+  { day:25, type:"Éducation", color:"#FFFBEB", textColor:"#B45309", border:"#FDE68A", idea:"3 piliers : sommeil, nutrition, sport", context:"Triangle de la performance, importance de chaque pilier" },
+  { day:26, type:"Communauté", color:"#EFF6FF", textColor:"#1D4ED8", border:"#BFDBFE", idea:"Quel cours collectif rajouter ?", context:"Impliquer la communauté dans les décisions" },
+  { day:27, type:"Témoignage", color:"#F0FDF4", textColor:"#15803D", border:"#BBF7D0", idea:"Interview rapide d'un membre", context:"Pourquoi Feat Club, résultats obtenus" },
+  { day:28, type:"Promo", color:"#FFF1F2", textColor:"#BE123C", border:"#FECDD3", idea:"Offre limitée fin de mois", context:"Urgence, places limitées, abonnement avantageux" },
+  { day:29, type:"Coulisses", color:"#FDF4FF", textColor:"#7E22CE", border:"#E9D5FF", idea:"Entretien de la salle", context:"Soin apporté à la propreté et au confort" },
+  { day:30, type:"Bilan", color:"#F8FAFC", textColor:"#475569", border:"#CBD5E1", idea:"Recap du mois complet", context:"Chiffres, moments forts, teaser du mois suivant" },
+];
+
+let activeWeek = 0;
+let selectedDay = null;
+let currentPost = null;
+
+function renderWeeks() {
+  const el = document.getElementById('weeks');
+  el.innerHTML = ['Semaine 1','Semaine 2','Semaine 3','Semaine 4'].map((w,i) =>
+    `<button class="week-btn ${i===activeWeek?'active':''}" onclick="setWeek(${i})">${w}</button>`
+  ).join('');
+}
+
+function setWeek(i) {
+  activeWeek = i;
+  renderWeeks();
+  renderDays();
+}
+
+function renderDays() {
+  const start = activeWeek * 7;
+  const days = agenda.slice(start, start + 7);
+  document.getElementById('days').innerHTML = days.map(item => `
+    <div class="day-card ${selectedDay===item.day?'selected':''}" onclick="generate(${item.day})" style="margin-bottom:8px">
+      <div class="day-num">J${item.day}</div>
+      <div class="day-info">
+        <span class="day-tag" style="background:${item.color};color:${item.textColor};border:1px solid ${item.border}">${item.type}</span>
+        <div class="day-idea">${item.idea}</div>
+      </div>
+      <div class="arrow">→</div>
+    </div>
+  `).join('');
+}
+
+async function generate(day) {
+  selectedDay = day;
+  renderDays();
+  document.getElementById('hint').style.display = 'none';
+  document.getElementById('grid').classList.add('has-result');
+
+  const item = agenda.find(a => a.day === day);
+  document.getElementById('result').innerHTML = `
+    <div class="result-header">
+      <div class="day-label">Jour ${item.day} · ${item.type}</div>
+      <div class="day-title">${item.idea}</div>
+    </div>
+    <div class="loading">
+      <div style="font-size:28px">✨</div>
+      <p>L'IA génère ton post...</p>
+    </div>
+  `;
+
+  try {
+    const res = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ item })
+    });
+    const post = await res.json();
+    currentPost = post;
+    renderResult(item, post);
+  } catch(e) {
+    document.getElementById('result').innerHTML = `<div class="loading"><p>Erreur. Réessaie.</p></div>`;
+  }
+}
+
+function renderResult(item, post) {
+  document.getElementById('result').innerHTML = `
+    <div class="result-header">
+      <div class="day-label">Jour ${item.day} · ${item.type}</div>
+      <div class="day-title">${item.idea}</div>
+    </div>
+    <div class="result-card">
+      <div class="result-section">
+        <div class="result-label" style="color:#2A8C7E">📝 Légende</div>
+        <div class="result-content" style="background:#F4F4F4">${post.legende}</div>
+      </div>
+      ${post.cta ? `<div class="result-section">
+        <div class="result-label" style="color:#E8541A">🎯 Appel à l'action</div>
+        <div class="result-content" style="background:#FFF7ED">${post.cta}</div>
+      </div>` : ''}
+      ${post.hashtags ? `<div class="result-section">
+        <div class="result-label" style="color:#888">🏷️ Hashtags</div>
+        <div class="result-content" style="background:#F0FDF9;color:#2A8C7E">${post.hashtags}</div>
+      </div>` : ''}
+      ${post.conseil_visuel ? `<div class="result-section">
+        <div class="result-label" style="color:#7E22CE">📸 Conseil visuel</div>
+        <div class="result-content" style="background:#FDF4FF;font-style:italic">${post.conseil_visuel}</div>
+      </div>` : ''}
+      ${post.meilleur_moment ? `<div class="result-section">
+        <div class="result-label" style="color:#B45309">⏰ Meilleur moment</div>
+        <div class="result-content" style="background:#FFFBEB">${post.meilleur_moment}</div>
+      </div>` : ''}
+      <button class="copy-btn" id="copyBtn" onclick="copyPost()">Copier le post complet</button>
+    </div>
+  `;
+}
+
+function copyPost() {
+  if (!currentPost) return;
+  const text = `${currentPost.legende}\n\n${currentPost.cta}\n\n${currentPost.hashtags}`;
+  navigator.clipboard.writeText(text);
+  const btn = document.getElementById('copyBtn');
+  btn.textContent = '✓ Copié !';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = 'Copier le post complet'; btn.classList.remove('copied'); }, 2000);
+}
+
+renderWeeks();
+renderDays();
+</script>
+</body>
+</html>
