@@ -101,7 +101,7 @@ async function generate(day){
   const item=agenda.find(a=>a.day===day);
   document.getElementById('result').innerHTML=`<div class="result-header"><div class="day-label">Jour ${item.day} · ${item.type}</div><div class="day-title">${item.idea}</div></div><div class="loading"><div style="font-size:28px">✨</div><p>L'IA génère ton post...</p></div>`;
   try{
-    const response=await fetch('/.netlify/functions/generate',{
+    const response=await fetch('cp8l5wjm3qxpm4f57citvkxxt2rgwnv4@hook.eu1.make.com',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({item})
