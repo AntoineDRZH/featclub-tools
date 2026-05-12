@@ -7,55 +7,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
   <style>
     :root {
-      --orange: #E8541A;
-      --vert: #2A8C7E;
-      --noir: #0A0A0A;
-      --blanc: #F5F0EB;
-      --gris: #1C1C1C;
-      --gris2: #252525;
-      --gris3: #2E2E2E;
+      --orange: #E8541A; --vert: #2A8C7E; --noir: #0A0A0A;
+      --blanc: #F5F0EB; --gris: #1C1C1C; --gris2: #252525; --gris3: #2E2E2E;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { background: var(--noir); color: var(--blanc); font-family: 'DM Sans', sans-serif; }
 
-    /* NAV */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(10,10,10,0.95);
-      backdrop-filter: blur(12px);
+      background: rgba(10,10,10,0.95); backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding: 0 24px;
-      display: flex; align-items: center; gap: 0;
-      overflow-x: auto;
+      padding: 0 24px; display: flex; align-items: center; gap: 0; overflow-x: auto;
     }
     .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 20px; letter-spacing: 3px;
+      font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px;
       color: var(--blanc); padding: 16px 20px 16px 0;
       border-right: 1px solid rgba(255,255,255,0.08);
-      margin-right: 16px; white-space: nowrap;
-      flex-shrink: 0;
+      margin-right: 16px; white-space: nowrap; flex-shrink: 0;
     }
     .nav-logo span { color: var(--orange); }
     .nav-tabs { display: flex; gap: 0; }
     .nav-tab {
-      padding: 18px 20px;
-      font-size: 12px; font-weight: 500;
+      padding: 18px 20px; font-size: 12px; font-weight: 500;
       letter-spacing: 1px; text-transform: uppercase;
-      color: rgba(245,240,235,0.4);
-      cursor: pointer; white-space: nowrap;
-      border-bottom: 2px solid transparent;
-      transition: all 0.2s;
+      color: rgba(245,240,235,0.4); cursor: pointer; white-space: nowrap;
+      border-bottom: 2px solid transparent; transition: all 0.2s;
     }
     .nav-tab.active { color: var(--orange); border-bottom-color: var(--orange); }
     .nav-tab:hover { color: var(--blanc); }
 
-    /* PAGES */
     .page { display: none; max-width: 1100px; margin: 0 auto; padding: 40px 20px 80px; }
     .page.active { display: block; }
 
-    /* SECTION TITLE */
     .section-tag {
       font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
       color: var(--vert); font-weight: 500; margin-bottom: 12px;
@@ -65,68 +49,39 @@
     .section-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(36px, 5vw, 64px);
-      letter-spacing: 2px; line-height: 1;
-      margin-bottom: 40px;
+      letter-spacing: 2px; line-height: 1; margin-bottom: 40px;
     }
-
-    /* CARDS */
-    .card {
-      background: var(--gris); border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.06);
-      overflow: hidden;
-    }
-    .card-header {
-      padding: 20px 24px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
+    .card { background: var(--gris); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); overflow: hidden; }
+    .card-header { padding: 20px 24px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
     .card-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
     .card-sub { font-size: 12px; color: rgba(245,240,235,0.4); }
     .card-body { padding: 20px 24px; }
-
-    /* GRID */
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    @media(max-width: 700px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+    @media(max-width:700px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
 
-    /* COPY BTN */
     .copy-btn {
-      display: inline-block; padding: 8px 18px;
-      background: var(--orange); color: var(--blanc);
-      border: none; border-radius: 4px;
-      font-size: 11px; font-weight: 500;
-      letter-spacing: 1px; text-transform: uppercase;
-      cursor: pointer; transition: all 0.2s;
-      font-family: 'DM Sans', sans-serif;
-      margin-top: 12px;
+      display: inline-block; padding: 8px 18px; background: var(--orange); color: var(--blanc);
+      border: none; border-radius: 4px; font-size: 11px; font-weight: 500;
+      letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif; margin-top: 12px;
     }
     .copy-btn:hover { background: #d44a14; }
     .copy-btn.copied { background: var(--vert); }
     .copy-btn-full {
-      display: block; width: 100%; padding: 12px;
-      background: var(--orange); color: var(--blanc);
-      border: none; border-radius: 4px;
-      font-size: 11px; font-weight: 500;
-      letter-spacing: 2px; text-transform: uppercase;
-      cursor: pointer; transition: all 0.2s;
-      font-family: 'DM Sans', sans-serif;
-      margin-top: 16px;
+      display: block; width: 100%; padding: 12px; background: var(--orange); color: var(--blanc);
+      border: none; border-radius: 4px; font-size: 11px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif; margin-top: 16px;
     }
     .copy-btn-full:hover { background: #d44a14; }
     .copy-btn-full.copied { background: var(--vert); }
 
-    /* CHARTE */
-    .color-swatch {
-      height: 80px; border-radius: 6px; margin-bottom: 12px;
-      display: flex; align-items: flex-end; padding: 10px 12px;
-    }
+    .color-swatch { height: 80px; border-radius: 6px; margin-bottom: 12px; display: flex; align-items: flex-end; padding: 10px 12px; }
     .color-hex { font-size: 11px; font-weight: 600; letter-spacing: 1px; }
     .color-name { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
     .color-usage { font-size: 11px; color: rgba(245,240,235,0.5); line-height: 1.5; }
-
-    .font-preview {
-      padding: 24px; background: var(--gris2);
-      border-radius: 6px; margin-bottom: 12px;
-    }
+    .font-preview { padding: 24px; background: var(--gris2); border-radius: 6px; margin-bottom: 12px; }
     .font-big { font-size: 36px; line-height: 1; margin-bottom: 8px; }
     .font-medium { font-size: 18px; margin-bottom: 6px; }
     .font-small { font-size: 13px; color: rgba(245,240,235,0.6); }
@@ -136,186 +91,112 @@
       color: var(--orange); font-size: 10px; letter-spacing: 2px;
       text-transform: uppercase; border-radius: 20px; margin-bottom: 12px;
     }
-
-    .rule-item {
-      display: flex; gap: 12px; align-items: flex-start;
-      padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
+    .rule-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .rule-item:last-child { border-bottom: none; }
     .rule-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
     .rule-text { font-size: 13px; color: rgba(245,240,235,0.8); line-height: 1.5; }
 
-    /* STORIES */
-    .story-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px; margin-bottom: 32px;
-    }
-    .story-card {
-      background: var(--gris); border-radius: 8px;
-      border: 1.5px solid transparent;
-      cursor: pointer; transition: all 0.15s;
-      overflow: hidden;
-    }
-    .story-card:hover { border-color: rgba(232,84,26,0.4); }
-    .story-card.selected { border-color: var(--orange); }
-    .story-card-header {
-      padding: 14px 16px 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .story-day {
-      width: 32px; height: 32px; border-radius: 6px;
-      background: var(--orange); display: flex;
-      align-items: center; justify-content: center;
-      font-family: 'Bebas Neue', sans-serif; font-size: 14px;
-      flex-shrink: 0;
-    }
-    .story-day-name { font-size: 13px; font-weight: 500; }
-    .story-type-tag {
-      display: inline-block; padding: 2px 8px;
-      border-radius: 20px; font-size: 9px;
-      font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
-    }
-    .story-card-body { padding: 14px 16px; }
-    .story-idea { font-size: 13px; color: rgba(245,240,235,0.8); margin-bottom: 6px; }
-    .story-format { font-size: 11px; color: rgba(245,240,235,0.4); }
-
-    /* STORY DETAIL */
-    .story-detail { display: none; }
-    .story-detail.visible { display: block; }
-    .detail-card {
-      background: var(--gris); border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.08);
-      overflow: hidden; position: sticky; top: 80px;
-    }
-    .detail-header {
-      padding: 18px 20px 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      background: linear-gradient(135deg, rgba(232,84,26,0.1), transparent);
-    }
-    .detail-day-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 4px; }
-    .detail-title { font-size: 15px; font-weight: 600; }
-    .detail-section { padding: 14px 20px 0; }
-    .detail-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; font-weight: 500; margin-bottom: 6px; }
-    .detail-content {
-      font-size: 13px; font-weight: 300; line-height: 1.7;
-      padding: 10px 12px; border-radius: 6px;
-      background: rgba(255,255,255,0.04);
-      color: rgba(245,240,235,0.85);
-    }
-    .detail-hashtags { font-size: 12px; color: var(--vert); line-height: 1.8; }
-    .detail-tip { font-style: italic; color: rgba(245,240,235,0.5); font-size: 12px; }
-
-    /* STORY PREVIEW PHONE */
-    .phone-preview {
-      width: 180px; flex-shrink: 0;
-      aspect-ratio: 9/16;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 3px solid var(--gris3);
-      position: relative;
-    }
-    .phone-inner {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      padding: 16px 12px; position: relative;
-    }
-    .phone-bar {
-      display: flex; gap: 3px; margin-bottom: 8px;
-    }
-    .phone-bar-seg {
-      height: 2px; flex: 1; border-radius: 2px;
-      background: rgba(255,255,255,0.4);
-    }
-    .phone-bar-seg.active { background: var(--blanc); }
-    .phone-top {
-      display: flex; align-items: center; gap: 6px; margin-bottom: 12px;
-    }
-    .phone-avatar {
-      width: 24px; height: 24px; border-radius: 50%;
-      background: var(--orange); display: flex;
-      align-items: center; justify-content: center;
-      font-family: 'Bebas Neue', sans-serif; font-size: 11px;
-    }
-    .phone-name { font-size: 10px; font-weight: 500; }
-    .phone-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-    .phone-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1.1; margin-bottom: 8px; }
-    .phone-text { font-size: 9px; line-height: 1.5; color: rgba(245,240,235,0.8); }
-    .phone-cta {
-      margin-top: 12px; padding: 6px 12px;
-      border-radius: 4px; font-size: 9px;
-      font-weight: 600; text-align: center;
-      letter-spacing: 1px; text-transform: uppercase;
-    }
-    .phone-bottom {
-      display: flex; justify-content: space-between;
-      align-items: center; margin-top: 8px;
-    }
-    .phone-swipe { font-size: 8px; color: rgba(245,240,235,0.5); text-align: center; }
-
-    /* POSTS */
-    .posts-nav {
-      display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap;
-    }
-    .posts-nav-btn {
-      padding: 8px 18px;
-      border: 1px solid rgba(255,255,255,0.1);
+    /* ── STORIES PAGE ─────────────────────────────── */
+    .stories-header { margin-bottom: 28px; }
+    .week-tabs { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+    .week-tab {
+      padding: 8px 18px; border: 1px solid rgba(255,255,255,0.1);
       background: transparent; color: rgba(245,240,235,0.5);
-      font-size: 11px; font-weight: 500;
-      letter-spacing: 1px; text-transform: uppercase;
-      cursor: pointer; border-radius: 4px;
-      transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; border-radius: 4px; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+    }
+    .week-tab.active { background: var(--orange); border-color: var(--orange); color: var(--blanc); }
+
+    .week-page { display: none; }
+    .week-page.active { display: block; }
+
+    .stories-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 20px; margin-bottom: 28px; }
+    .story-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+    .phone {
+      width: 190px; aspect-ratio: 9/16; border-radius: 22px; overflow: hidden;
+      border: 2px solid #2A2A2A; cursor: pointer; transition: all 0.2s; position: relative;
+    }
+    .phone:hover { transform: scale(1.03); border-color: rgba(232,84,26,0.5); }
+    .phone.selected { border-color: #E8541A; transform: scale(1.04); box-shadow: 0 12px 32px rgba(232,84,26,0.3); }
+    .phone-inner { width: 100%; height: 100%; display: flex; flex-direction: column; padding: 14px 12px; position: relative; z-index: 2; }
+    .pbar { display: flex; gap: 3px; margin-bottom: 8px; }
+    .pseg { height: 2.5px; flex: 1; border-radius: 2px; background: rgba(255,255,255,0.3); }
+    .pseg.on { background: #fff; }
+    .puser { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+    .pavatar { width: 22px; height: 22px; border-radius: 50%; background: #E8541A; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; color: #fff; flex-shrink: 0; border: 1.5px solid rgba(255,255,255,0.4); }
+    .pname { font-size: 10px; font-weight: 500; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+    .pcontent { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .photo-bg { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; }
+    .overlay { position: absolute; inset: 0; z-index: 1; }
+    .day-name { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,240,235,0.6); font-weight: 500; }
+    .day-type { font-size: 10px; color: rgba(245,240,235,0.35); text-align: center; }
+
+    /* DETAIL PANEL */
+    .detail { background: #1C1C1C; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; }
+    .detail-head { padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .detail-tag { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #E8541A; margin-bottom: 4px; }
+    .detail-title { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 20px 24px; }
+    @media(max-width:600px) { .detail-grid { grid-template-columns: 1fr; } }
+    .dlabel { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
+    .dcontent { font-size: 13px; color: rgba(245,240,235,0.75); line-height: 1.7; padding: 10px 13px; background: rgba(255,255,255,0.04); border-radius: 6px; }
+    .dfull { grid-column: 1/-1; }
+    .s-copy-btn { margin: 0 24px 24px; display: block; padding: 12px; background: #E8541A; color: #fff; border: none; border-radius: 4px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; text-align: center; }
+    .s-copy-btn:hover { background: #d44a14; }
+    .s-copy-btn.copied { background: #2A8C7E; }
+
+    /* ── POSTS PAGE ────────────────────────────────── */
+    .posts-nav { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+    .posts-nav-btn {
+      padding: 8px 18px; border: 1px solid rgba(255,255,255,0.1);
+      background: transparent; color: rgba(245,240,235,0.5);
+      font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; border-radius: 4px; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
     }
     .posts-nav-btn.active { background: var(--orange); border-color: var(--orange); color: var(--blanc); }
-
     .post-type-page { display: none; }
     .post-type-page.active { display: block; }
-
     .post-item {
-      background: var(--gris); border-radius: 8px;
-      border: 1.5px solid transparent;
-      margin-bottom: 12px; cursor: pointer;
-      transition: all 0.15s; overflow: hidden;
+      background: var(--gris); border-radius: 8px; border: 1.5px solid transparent;
+      margin-bottom: 12px; cursor: pointer; transition: all 0.15s; overflow: hidden;
     }
     .post-item:hover { border-color: rgba(232,84,26,0.3); }
     .post-item.selected { border-color: var(--orange); }
-    .post-item-header {
-      padding: 14px 16px; display: flex;
-      align-items: center; gap: 12px;
-    }
+    .post-item-header { padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
     .post-num {
-      width: 36px; height: 36px; border-radius: 6px;
-      background: var(--orange); display: flex;
-      align-items: center; justify-content: center;
-      font-family: 'Bebas Neue', sans-serif; font-size: 16px;
-      flex-shrink: 0;
+      width: 36px; height: 36px; border-radius: 6px; background: var(--orange);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 16px; flex-shrink: 0;
     }
     .post-item-title { font-size: 14px; font-weight: 500; }
     .post-item-sub { font-size: 11px; color: rgba(245,240,235,0.4); margin-top: 2px; }
     .post-arrow { color: rgba(245,240,235,0.2); font-size: 18px; margin-left: auto; }
     .post-item.selected .post-arrow { color: var(--orange); }
-
     .post-detail { display: none; padding: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
     .post-item.selected .post-detail { display: block; }
-
     .post-section { margin-bottom: 14px; }
     .post-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; font-weight: 500; margin-bottom: 6px; }
-    .post-content {
-      font-size: 13px; font-weight: 300; line-height: 1.7;
-      padding: 10px 12px; border-radius: 6px;
-      background: rgba(255,255,255,0.04);
-      color: rgba(245,240,235,0.85);
-    }
+    .post-content { font-size: 13px; font-weight: 300; line-height: 1.7; padding: 10px 12px; border-radius: 6px; background: rgba(255,255,255,0.04); color: rgba(245,240,235,0.85); }
     .post-hashtags { font-size: 12px; color: var(--vert); line-height: 1.8; }
     .post-tip { font-style: italic; color: rgba(245,240,235,0.5); font-size: 12px; }
 
-    .badge {
-      display: inline-block; padding: 3px 10px;
-      border-radius: 20px; font-size: 9px;
-      font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
-      margin-right: 6px; margin-bottom: 8px;
+    .hook-box {
+      background: linear-gradient(135deg, rgba(232,84,26,0.12), rgba(42,140,126,0.08));
+      border: 1px solid rgba(232,84,26,0.25); border-radius: 8px;
+      padding: 14px 16px; margin-bottom: 14px;
     }
+    .hook-label {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      font-weight: 600; color: var(--orange); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .hook-label::after { content: ''; flex: 1; height: 1px; background: rgba(232,84,26,0.2); }
+    .hook-line { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .hook-line:last-child { border-bottom: none; padding-bottom: 0; }
+    .hook-key { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,240,235,0.35); min-width: 80px; flex-shrink: 0; padding-top: 2px; }
+    .hook-val { font-size: 13px; color: rgba(245,240,235,0.9); line-height: 1.5; font-weight: 400; }
+    .hook-val strong { color: var(--orange); font-weight: 600; }
   </style>
 </head>
 <body>
@@ -329,56 +210,21 @@
   </div>
 </nav>
 
-<!-- PAGE CHARTE -->
+<!-- ═══════════════════════════════════════ PAGE CHARTE ═══════════════════ -->
 <div class="page active" id="page-charte">
   <div class="section-tag">Identité visuelle</div>
   <h1 class="section-title">CHARTE<br>GRAPHIQUE</h1>
 
-  <!-- COULEURS -->
   <div class="card" style="margin-bottom:24px">
-    <div class="card-header">
-      <div class="card-title">Palette de couleurs</div>
-      <div class="card-sub">5 couleurs — à utiliser exclusivement</div>
-    </div>
+    <div class="card-header"><div class="card-title">Palette de couleurs</div><div class="card-sub">5 couleurs — à utiliser exclusivement</div></div>
     <div class="card-body">
       <div class="grid-3" style="margin-bottom:24px">
-        <div>
-          <div class="color-swatch" style="background:#E8541A;border:none">
-            <span class="color-hex" style="color:#fff">#E8541A</span>
-          </div>
-          <div class="color-name">Orange Feat</div>
-          <div class="color-usage">Couleur principale · CTA · Titres forts · Accents</div>
-        </div>
-        <div>
-          <div class="color-swatch" style="background:#2A8C7E;border:none">
-            <span class="color-hex" style="color:#fff">#2A8C7E</span>
-          </div>
-          <div class="color-name">Vert Teal</div>
-          <div class="color-usage">Couleur secondaire · Hashtags · Éléments éducatifs</div>
-        </div>
-        <div>
-          <div class="color-swatch" style="background:#0A0A0A;border:none">
-            <span class="color-hex" style="color:#fff">#0A0A0A</span>
-          </div>
-          <div class="color-name">Noir Feat</div>
-          <div class="color-usage">Fonds sombres · Textes sur fond clair</div>
-        </div>
-        <div>
-          <div class="color-swatch" style="background:#F5F0EB;border:1px solid #ddd">
-            <span class="color-hex" style="color:#333">#F5F0EB</span>
-          </div>
-          <div class="color-name">Blanc Cassé</div>
-          <div class="color-usage">Textes sur fond sombre · Fonds clairs</div>
-        </div>
-        <div>
-          <div class="color-swatch" style="background:#1C1C1C;border:none">
-            <span class="color-hex" style="color:#fff">#1C1C1C</span>
-          </div>
-          <div class="color-name">Gris Foncé</div>
-          <div class="color-usage">Fonds secondaires · Cards · Overlay</div>
-        </div>
+        <div><div class="color-swatch" style="background:#E8541A"><span class="color-hex" style="color:#fff">#E8541A</span></div><div class="color-name">Orange Feat</div><div class="color-usage">Couleur principale · CTA · Titres forts · Accents</div></div>
+        <div><div class="color-swatch" style="background:#2A8C7E"><span class="color-hex" style="color:#fff">#2A8C7E</span></div><div class="color-name">Vert Teal</div><div class="color-usage">Couleur secondaire · Hashtags · Éléments éducatifs</div></div>
+        <div><div class="color-swatch" style="background:#0A0A0A"><span class="color-hex" style="color:#fff">#0A0A0A</span></div><div class="color-name">Noir Feat</div><div class="color-usage">Fonds sombres · Textes sur fond clair</div></div>
+        <div><div class="color-swatch" style="background:#F5F0EB;border:1px solid #ddd"><span class="color-hex" style="color:#333">#F5F0EB</span></div><div class="color-name">Blanc Cassé</div><div class="color-usage">Textes sur fond sombre · Fonds clairs</div></div>
+        <div><div class="color-swatch" style="background:#1C1C1C"><span class="color-hex" style="color:#fff">#1C1C1C</span></div><div class="color-name">Gris Foncé</div><div class="color-usage">Fonds secondaires · Cards · Overlay</div></div>
       </div>
-
       <div style="padding:16px;background:rgba(232,84,26,0.08);border:1px solid rgba(232,84,26,0.2);border-radius:8px">
         <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:8px;font-weight:600">⚠️ Règle absolue</div>
         <div style="font-size:13px;color:rgba(245,240,235,0.8);line-height:1.6">Ne jamais utiliser d'autres couleurs. Pas de bleu, pas de rouge, pas de violet. Ces 5 couleurs suffisent à créer une identité forte et reconnaissable.</div>
@@ -386,12 +232,8 @@
     </div>
   </div>
 
-  <!-- POLICES -->
   <div class="card" style="margin-bottom:24px">
-    <div class="card-header">
-      <div class="card-title">Typographie</div>
-      <div class="card-sub">2 polices disponibles gratuitement sur Canva</div>
-    </div>
+    <div class="card-header"><div class="card-title">Typographie</div><div class="card-sub">2 polices disponibles gratuitement sur Canva</div></div>
     <div class="card-body">
       <div class="grid-2">
         <div>
@@ -413,37 +255,21 @@
           <div style="font-size:13px;color:rgba(245,240,235,0.6);line-height:1.6">Cherche "DM Sans" dans Canva. Weight 300 pour les corps de texte, 500 pour les labels en majuscules.</div>
         </div>
       </div>
-
       <div style="margin-top:20px;padding:16px;background:var(--gris2);border-radius:8px">
         <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--vert);margin-bottom:12px;font-weight:600">Hiérarchie typographique</div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="display:flex;align-items:center;gap:12px">
-            <span style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--orange);letter-spacing:2px">TITRE PRINCIPAL</span>
-            <span style="font-size:11px;color:rgba(245,240,235,0.4)">Bebas Neue · 40-80px · Orange ou Blanc</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px">
-            <span style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px">SOUS-TITRE</span>
-            <span style="font-size:11px;color:rgba(245,240,235,0.4)">Bebas Neue · 20-30px · Blanc</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px">
-            <span style="font-size:13px;font-weight:300">Corps de texte normal</span>
-            <span style="font-size:11px;color:rgba(245,240,235,0.4)">DM Sans Light · 13-16px · Blanc cassé</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px">
-            <span style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--vert)">LABEL / TAG</span>
-            <span style="font-size:11px;color:rgba(245,240,235,0.4)">DM Sans Medium · 10-12px · Vert · Majuscules</span>
-          </div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--orange);letter-spacing:2px">TITRE PRINCIPAL</span><span style="font-size:11px;color:rgba(245,240,235,0.4)">Bebas Neue · 40-80px · Orange ou Blanc</span></div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px">SOUS-TITRE</span><span style="font-size:11px;color:rgba(245,240,235,0.4)">Bebas Neue · 20-30px · Blanc</span></div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="font-size:13px;font-weight:300">Corps de texte normal</span><span style="font-size:11px;color:rgba(245,240,235,0.4)">DM Sans Light · 13-16px · Blanc cassé</span></div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--vert)">LABEL / TAG</span><span style="font-size:11px;color:rgba(245,240,235,0.4)">DM Sans Medium · 10-12px · Vert · Majuscules</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- RÈGLES -->
   <div class="grid-2">
     <div class="card">
-      <div class="card-header">
-        <div class="card-title" style="color:#4ade80">✅ Ce qu'on fait</div>
-      </div>
+      <div class="card-header"><div class="card-title" style="color:#4ade80">✅ Ce qu'on fait</div></div>
       <div class="card-body">
         <div class="rule-item"><div class="rule-icon">✓</div><div class="rule-text">Fond noir ou blanc cassé — jamais de fond coloré autre que l'orange ponctuel</div></div>
         <div class="rule-item"><div class="rule-icon">✓</div><div class="rule-text">Texte épuré — peu de mots, impact maximal</div></div>
@@ -454,9 +280,7 @@
       </div>
     </div>
     <div class="card">
-      <div class="card-header">
-        <div class="card-title" style="color:#f87171">❌ Ce qu'on évite</div>
-      </div>
+      <div class="card-header"><div class="card-title" style="color:#f87171">❌ Ce qu'on évite</div></div>
       <div class="card-body">
         <div class="rule-item"><div class="rule-icon">✗</div><div class="rule-text">Jamais plus de 2 polices sur un même visuel</div></div>
         <div class="rule-item"><div class="rule-icon">✗</div><div class="rule-text">Pas de filtres Instagram qui dénaturent les couleurs</div></div>
@@ -468,62 +292,49 @@
     </div>
   </div>
 
-  <!-- CANVA GUIDE -->
   <div class="card" style="margin-top:24px">
-    <div class="card-header">
-      <div class="card-title">Guide Canva — Paramètres à configurer</div>
-      <div class="card-sub">À faire une seule fois, puis dupliquer à chaque post</div>
-    </div>
+    <div class="card-header"><div class="card-title">Guide Canva — Paramètres à configurer</div><div class="card-sub">À faire une seule fois, puis dupliquer à chaque post</div></div>
     <div class="card-body">
       <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--gris2);border-radius:6px">
-          <div style="width:28px;height:28px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;flex-shrink:0">1</div>
-          <div style="font-size:13px;color:rgba(245,240,235,0.8);line-height:1.6"><strong>Formats :</strong> Post Instagram = 1080×1080px · Story = 1080×1920px · Réel = 1080×1920px</div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--gris2);border-radius:6px">
-          <div style="width:28px;height:28px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;flex-shrink:0">2</div>
-          <div style="font-size:13px;color:rgba(245,240,235,0.8);line-height:1.6"><strong>Palette Canva :</strong> Créer une palette "Feat Club" avec les 5 codes hex. Elle apparaîtra dans chaque nouveau design.</div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--gris2);border-radius:6px">
-          <div style="width:28px;height:28px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;flex-shrink:0">3</div>
-          <div style="font-size:13px;color:rgba(245,240,235,0.8);line-height:1.6"><strong>Kit de marque :</strong> Dans Canva Pro, créer un Brand Kit. Sinon, créer un template vide et le dupliquer à chaque nouveau post.</div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--gris2);border-radius:6px">
-          <div style="width:28px;height:28px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;flex-shrink:0">4</div>
-          <div style="font-size:13px;color:rgba(245,240,235,0.8);line-height:1.6"><strong>Export :</strong> Toujours en PNG, qualité maximale. Jamais en JPEG pour les visuels texte.</div>
-        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--gris2);border-radius:6px"><div style="width:28px;height:28px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;flex-shrink:0">1</div><div style="font-size:13px;color:rgba(245,240,235,0.8);line-height:1.6"><strong>Formats :</strong> Post Instagram = 1080×1080px · Story = 1080×1920px · Réel = 1080×1920px</div></div>
+        <div style="display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--gris2);border-radius:6px"><div style="width:28px;height:28px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;flex-shrink:0">2</div><div style="font-size:13px;color:rgba(245,240,235,0.8);line-height:1.6"><strong>Palette Canva :</strong> Créer une palette "Feat Club" avec les 5 codes hex.</div></div>
+        <div style="display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--gris2);border-radius:6px"><div style="width:28px;height:28px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;flex-shrink:0">3</div><div style="font-size:13px;color:rgba(245,240,235,0.8);line-height:1.6"><strong>Kit de marque :</strong> Dans Canva Pro, créer un Brand Kit. Sinon, créer un template vide et le dupliquer.</div></div>
+        <div style="display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--gris2);border-radius:6px"><div style="width:28px;height:28px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;flex-shrink:0">4</div><div style="font-size:13px;color:rgba(245,240,235,0.8);line-height:1.6"><strong>Export :</strong> Toujours en PNG, qualité maximale. Jamais en JPEG pour les visuels texte.</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PAGE STORIES -->
+<!-- ═══════════════════════════════════════ PAGE STORIES ══════════════════ -->
 <div class="page" id="page-stories">
   <div class="section-tag">Contenu quotidien</div>
-  <h1 class="section-title">STORIES<br>QUOTIDIENNES</h1>
+  <h1 class="section-title">STORIES<br>30 JOURS</h1>
 
-  <div style="display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start" id="stories-layout">
-    <div>
-      <div class="story-grid" id="stories-grid"></div>
-    </div>
-    <div class="story-detail" id="story-detail">
-      <div class="detail-card" id="story-detail-content"></div>
-    </div>
+  <div class="week-tabs">
+    <button class="week-tab active" onclick="showWeek(1,event)">Semaine 1</button>
+    <button class="week-tab" onclick="showWeek(2,event)">Semaine 2</button>
+    <button class="week-tab" onclick="showWeek(3,event)">Semaine 3</button>
+    <button class="week-tab" onclick="showWeek(4,event)">Semaine 4</button>
   </div>
+
+  <div id="week-1" class="week-page active"></div>
+  <div id="week-2" class="week-page"></div>
+  <div id="week-3" class="week-page"></div>
+  <div id="week-4" class="week-page"></div>
+
+  <div class="detail" id="story-detail" style="display:none;margin-top:8px"></div>
 </div>
 
-<!-- PAGE POSTS -->
+<!-- ═══════════════════════════════════════ PAGE POSTS ════════════════════ -->
 <div class="page" id="page-posts">
   <div class="section-tag">3 posts par semaine</div>
   <h1 class="section-title">PLANNING<br>POSTS</h1>
-
   <div class="posts-nav">
     <button class="posts-nav-btn active" onclick="showPostType('people')">👤 Feat People</button>
     <button class="posts-nav-btn" onclick="showPostType('idee')">💡 Idée reçue</button>
     <button class="posts-nav-btn" onclick="showPostType('studio')">🏋️ Immersion Studio</button>
     <button class="posts-nav-btn" onclick="showPostType('event')">⚡ Feat Event</button>
   </div>
-
   <div class="post-type-page active" id="posts-people"></div>
   <div class="post-type-page" id="posts-idee"></div>
   <div class="post-type-page" id="posts-studio"></div>
@@ -531,7 +342,7 @@
 </div>
 
 <script>
-// NAV
+/* ═══════════════════ NAV ═══════════════════════════════════════════════ */
 function showPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -539,281 +350,675 @@ function showPage(page) {
   event.target.classList.add('active');
 }
 
-// STORIES DATA
-const stories = [
+/* ═══════════════════ STORIES DATA — 30 jours ══════════════════════════ */
+// Chaque story : { day, dayNum, type, typeColor, bg, overlay, bodyHTML, tag, titre, exemple, canva }
+// Groupées par semaine (7 par semaine)
+
+const stories30 = [
+  // ── SEMAINE 1 ──────────────────────────────────────────────────────────
   {
-    day: "LUN", dayFull: "Lundi", type: "Conseil", color: "#F0FDF9", tc: "#0F766E", border: "#99F6E4",
-    format: "Story texte + visuel",
-    idea: "Tip sportif de la semaine",
-    legende: "💪 TIP DE LA SEMAINE\n\n[Titre du conseil en Bebas Neue]\n\nExplication courte en 2-3 lignes maximum.\n\nFait-le dès aujourd'hui.",
-    exemple: "💪 TIP DE LA SEMAINE\n\nL'ÉCHAUFFEMENT C'EST PAS OPTIONNEL\n\n5 minutes avant ta séance = moins de blessures + meilleures performances. Toujours.",
-    cta: "→ Swipe up pour en savoir plus / Réponds à cette story",
-    structure: "Fond noir · Titre Bebas Neue orange · Corps DM Sans blanc · Barre orange en haut",
-    conseil: "Prépare 4 tips le dimanche soir pour toute la semaine. Varie : nutrition, technique, récupération, mindset."
+    week:1, day:"LUN", dayNum:1, type:"Conseil", typeColor:"#2A8C7E",
+    bg:"linear-gradient(160deg,#2C1810 0%,#1A0E0A 40%,#0D1A18 100%)",
+    overlay:"linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.55) 100%)",
+    bodyHTML:`
+      <div style="display:inline-block;padding:3px 8px;background:rgba(42,140,126,0.85);border-radius:3px;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#fff;font-weight:600;margin-bottom:10px">TIP DU LUNDI</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;color:#F5F0EB;line-height:1.1;margin-bottom:8px">TU RESPIRES <span style="color:#E8541A">MAL</span> PENDANT TES SERIES</div>
+      <div style="width:28px;height:2px;background:#E8541A;margin-bottom:8px;border-radius:2px"></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.85);line-height:1.6">Expire à l'effort. Inspire au retour. Toujours.</div>`,
+    tag:"LUNDI · CONSEIL", titre:"La respiration en série",
+    exemple:"💪 TIP DU LUNDI\n\nTU RESPIRES MAL PENDANT TES SÉRIES\n\nExpire à l'effort. Inspire au retour. Toujours. C'est la base qui fait la différence entre une série efficace et une blessure.",
+    canva:"Fond sombre · Badge vert haut gauche · Titre Bebas blanc + mot-clé orange · Barre orange séparateur · Corps DM Sans Light"
   },
   {
-    day: "MAR", dayFull: "Mardi", type: "Coulisses", color: "#FDF4FF", tc: "#7E22CE", border: "#E9D5FF",
-    format: "Vidéo 15 sec ou photo",
-    idea: "Behind the scenes de la salle",
-    legende: "Capture un moment authentique de la journée :\n→ Préparation du matériel\n→ Une séance en cours (avec accord)\n→ Le coach qui programme\n→ La salle vide tôt le matin",
-    exemple: "Vidéo : 15 secondes de la salle à 6h45. Lumières qui s'allument. Barres posées au sol. Musique qui commence.\n\nTexte overlay : \"LE CALME AVANT LA TEMPÊTE 🌊\"",
-    cta: "Texte overlay : message court et fort. Pas de légende longue.",
-    structure: "Vidéo brute ou photo + texte overlay Bebas Neue · Couleurs naturelles · Son ambiance",
-    conseil: "Filme avec ton téléphone, c'est volontairement authentique. Pas besoin de montage."
+    week:1, day:"MAR", dayNum:2, type:"Coulisses", typeColor:"#7E22CE",
+    bg:"linear-gradient(160deg,#0D2820 0%,#071510 50%,#0A0A0A 100%)",
+    overlay:"rgba(0,0,0,0.45)",
+    topBar:"linear-gradient(90deg,#2A8C7E,#E8541A)",
+    bodyHTML:`
+      <div style="display:inline-block;padding:3px 8px;background:rgba(42,140,126,0.7);border:1px solid rgba(42,140,126,0.9);border-radius:3px;font-size:7px;letter-spacing:1px;text-transform:uppercase;color:#fff;margin-bottom:10px">VIDÉO COULISSES</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:#F5F0EB;line-height:1.1;margin-bottom:8px">LE CALME<br>AVANT LA<br>TEMPÊTE</div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.5);letter-spacing:2px;text-transform:uppercase">6H30 · FEAT CLUB</div>`,
+    tag:"MARDI · COULISSES", titre:"La salle à 6h30",
+    exemple:"Vidéo 15 sec : lumières qui s'allument, barres froides, musique qui démarre.\n\nOverlay : LE CALME AVANT LA TEMPÊTE\nSous-titre : 6H30 · FEAT CLUB",
+    canva:"Vidéo brute · Overlay sombre léger · Barre gradient top · Badge vert · Titre Bebas blanc"
   },
   {
-    day: "MER", dayFull: "Mercredi", type: "Communauté", color: "#EFF6FF", tc: "#1D4ED8", border: "#BFDBFE",
-    format: "Story interactive",
-    idea: "Sondage ou question ouverte",
-    legende: "Pose une question à ta communauté :\n→ Sondage (2 choix)\n→ Question ouverte (curseur)\n→ Quiz sport\n→ Emoji slider",
-    exemple: "SONDAGE : \"Tu t'entraînes plutôt :\"\n🌅 Le matin\n🌙 Le soir\n\nRésultats partagés demain !",
-    cta: "Toujours partager les résultats en story le lendemain",
-    structure: "Fond vert ou orange · Question en Bebas Neue · Widget interactif Instagram en bas",
-    conseil: "Note les réponses — elles t'aident à comprendre ta communauté et créer du contenu qui résonne."
+    week:1, day:"MER", dayNum:3, type:"Sondage", typeColor:"#E8541A",
+    bg:"linear-gradient(160deg,#E8541A,#BF3D0A)",
+    overlay:"",
+    bodyHTML:`
+      <div style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-bottom:8px">HONNÊTEMENT...</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#F5F0EB;line-height:1.2;margin-bottom:14px">TU T'ENTRAÎNES COMBIEN DE FOIS PAR SEMAINE ?</div>
+      <div style="background:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.4);border-radius:5px;padding:8px 10px;font-size:10px;color:#fff;font-weight:600;text-align:center;margin-bottom:6px">1 - 2 fois</div>
+      <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:5px;padding:8px 10px;font-size:10px;color:#fff;font-weight:600;text-align:center">3 fois et +</div>`,
+    tag:"MERCREDI · SONDAGE", titre:"Fréquence d'entraînement",
+    exemple:"HONNÊTEMENT...\n\nTU T'ENTRAÎNES COMBIEN DE FOIS PAR SEMAINE ?\n\n🗳️ 1-2 fois\n🗳️ 3 fois et +\n\nRésultats demain 👇",
+    canva:"Fond orange · Cercles décoratifs transparents · Question Bebas blanc · Widget sondage Instagram natif"
   },
   {
-    day: "JEU", dayFull: "Jeudi", type: "Motivation", color: "#FFF3ED", tc: "#C2410C", border: "#FED7AA",
-    format: "Citation visuelle",
-    idea: "Citation motivation / mindset",
-    legende: "\"[CITATION FORTE EN MAJUSCULES]\"\n\n— Source ou auteur\n\nBack to Basics.",
-    exemple: "\"LA DOULEUR EST TEMPORAIRE.\nLA FIERTÉ EST ÉTERNELLE.\"\n\n— Feat Club\n\nBack to Basics.",
-    cta: "→ Tague quelqu'un qui en a besoin 👇",
-    structure: "Fond noir · Citation en Bebas Neue blanc ou orange · Ligne décorative · Logo Feat Club en bas",
-    conseil: "Alterne : citations d'athlètes connus, citations internes Feat Club, phrases philosophiques sur la discipline."
+    week:1, day:"JEU", dayNum:4, type:"Citation", typeColor:"#C2410C",
+    bg:"linear-gradient(160deg,#1C1008,#100A04,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.6)",
+    leftBar:"linear-gradient(to bottom,#E8541A,#2A8C7E)",
+    bodyHTML:`
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(232,84,26,0.3);line-height:1">"</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#F5F0EB;line-height:1.2;margin-bottom:10px">LES RÉSULTATS NE MENTENT PAS. <span style="color:#E8541A">L'EXCUSE</span> OUI.</div>
+      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#2A8C7E">— Feat Club · Back to Basics</div>`,
+    tag:"JEUDI · CITATION", titre:"L'excuse vs le résultat",
+    exemple:'"LES RÉSULTATS NE MENTENT PAS. L\'EXCUSE OUI."\n\n— Feat Club · Back to Basics\n\n→ Tague quelqu\'un qui en a besoin 👇',
+    canva:"Photo ambiance fond · Overlay 60% · Barre verticale gradient gauche · Guillemet géant transparent · Citation Bebas"
   },
   {
-    day: "VEN", dayFull: "Vendredi", type: "Promo", color: "#FFF1F2", tc: "#BE123C", border: "#FECDD3",
-    format: "Story offre / annonce",
-    idea: "Promotion ou annonce hebdo",
-    legende: "Utilise ce slot pour :\n→ Rappel séance d'essai gratuite\n→ Places disponibles la semaine prochaine\n→ Offre spéciale du moment\n→ Annonce d'un événement",
-    exemple: "🎁 IL RESTE 2 PLACES\n\nPour le Small Group Cross Training\nSamedi 9h\n\nDM 'SAMEDI' pour réserver\n→ Swipe up",
-    cta: "→ DM ou lien en bio · Urgence et rareté = action",
-    structure: "Fond orange · Texte blanc · Chiffre fort en grand · CTA clair en bas",
-    conseil: "Le vendredi c'est le meilleur jour pour les CTAs — les gens planifient leur week-end."
+    week:1, day:"VEN", dayNum:5, type:"Promo", typeColor:"#BE123C",
+    bg:"linear-gradient(160deg,#1A0A04,#100604,#0A0A0A)",
+    overlay:"",
+    topHalf:"linear-gradient(135deg,#E8541A,#BF3D0A)",
+    bodyHTML:`
+      <div style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,235,0.9);margin-bottom:3px">IL RESTE</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:52px;color:#F5F0EB;line-height:1">3</div>
+      <div style="font-size:9px;color:rgba(245,240,235,0.85);margin-bottom:12px">Places · Personal Training</div>
+      <div style="font-size:9px;color:rgba(245,240,235,0.75);line-height:2.2">Coach dédié<br>Programme sur mesure<br>1ère séance offerte</div>
+      <div style="margin-top:12px;background:#F5F0EB;color:#E8541A;padding:6px 14px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:inline-block">RÉSERVER →</div>`,
+    tag:"VENDREDI · PROMO", titre:"3 places Personal Training",
+    exemple:"🎁 IL RESTE 3 PLACES\n\nPersonal Training · Cette semaine\n\n✅ Coach dédié\n✅ Programme sur mesure\n✅ 1ère séance offerte\n\nDM 'PLACE' pour réserver →",
+    canva:"Fond sombre · Moitié haute orange dégradé · Chiffre géant blanc · CTA bouton blanc/orange · Logo bas"
   },
   {
-    day: "SAM", dayFull: "Samedi", type: "Communauté", color: "#EFF6FF", tc: "#1D4ED8", border: "#BFDBFE",
-    format: "Photo ou vidéo groupe",
-    idea: "Moment communauté post-séance",
-    legende: "Capture l'énergie post-séance :\n→ Photo de groupe (avec accords)\n→ Ambiance cours collectif\n→ Run Club\n→ Moment convivial",
-    exemple: "Photo de groupe après le Cross Training du matin.\n\nTexte : \"CES GENS-LÀ, C'EST LA FAMILLE FEAT CLUB 🤝\"\n\nTaguer les membres présents.",
-    cta: "→ Taguer les membres · Les inviter à partager · Créer du lien",
-    structure: "Photo naturelle · Overlay léger · Texte court en Bebas Neue · Tagging des membres",
-    conseil: "Demande toujours l'accord avant de poster. Les membres tagués = plus de portée organique."
+    week:1, day:"SAM", dayNum:6, type:"Communauté", typeColor:"#1D4ED8",
+    bg:"linear-gradient(160deg,#0D2820,#071510,#0A0A0A)",
+    overlay:"linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.15) 60%)",
+    bottomBar:"linear-gradient(90deg,#2A8C7E,#E8541A)",
+    bodyHTML:`
+      <div style="display:flex;justify-content:center;margin-bottom:8px">
+        <div style="width:22px;height:22px;border-radius:50%;background:#E8541A;border:2px solid rgba(42,140,126,0.6);display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:600">A</div>
+        <div style="width:22px;height:22px;border-radius:50%;background:#2A8C7E;border:2px solid #0A0A0A;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:600;margin-left:-6px">L</div>
+        <div style="width:22px;height:22px;border-radius:50%;background:#555;border:2px solid #0A0A0A;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:600;margin-left:-6px">M</div>
+        <div style="width:22px;height:22px;border-radius:50%;background:#333;border:2px solid #0A0A0A;display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff;margin-left:-6px">+4</div>
+      </div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;color:#F5F0EB;line-height:1.2;margin-bottom:6px;text-align:center">LA FAMILLE<br>FEAT CLUB</div>
+      <div style="font-size:7px;color:#2A8C7E;letter-spacing:1px;text-transform:uppercase;font-weight:600;text-align:center">APRÈS CROSS · SAMEDI 9H</div>`,
+    tag:"SAMEDI · COMMUNAUTÉ", titre:"La famille Feat Club",
+    exemple:"Photo groupe post-séance.\n\nTexte : CES GENS-LÀ, C'EST LA FAMILLE FEAT CLUB 🤝\n\nTaguer les membres présents.",
+    canva:"Photo groupe fond · Overlay dégradé bas · Barre vert/orange en bas · Avatars · Titre centré"
   },
   {
-    day: "DIM", dayFull: "Dimanche", type: "Recap", color: "#F8FAFC", tc: "#475569", border: "#CBD5E1",
-    format: "Story recap + teaser",
-    idea: "Bilan semaine + teaser semaine suivante",
-    legende: "BILAN DE LA SEMAINE :\n→ Chiffre fort (ex: X séances)\n→ Moment marquant\n→ Remerciements\n\nTEASER SEMAINE SUIVANTE :\n→ Annonce ce qui arrive",
-    exemple: "CETTE SEMAINE CHEZ FEAT CLUB :\n\n✅ 47 séances\n✅ 2 nouveaux membres\n✅ 1 record personnel battu\n\nLa semaine prochaine :\n🔥 Nouveau programme Cross\n📅 Créneaux dispo → DM",
-    cta: "→ Crée de l'anticipation pour la semaine suivante",
-    structure: "Fond gris foncé · Titres Bebas Neue orange · Liste avec checkmarks · Teaser en bas",
-    conseil: "Le dimanche soir est idéal — les gens planifient. Donne-leur une raison de revenir lundi."
+    week:1, day:"DIM", dayNum:7, type:"Recap", typeColor:"#475569",
+    bg:"linear-gradient(160deg,#1A1408,#100E04,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.65)",
+    topBar:"linear-gradient(90deg,#E8541A,#2A8C7E,#E8541A)",
+    bodyHTML:`
+      <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#E8541A;margin-bottom:12px;font-weight:600">CETTE SEMAINE</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#E8541A;line-height:1;min-width:44px">47</div><div style="font-size:7px;color:rgba(245,240,235,0.6);text-transform:uppercase;letter-spacing:1px;line-height:1.5">SÉANCES<br>DISPENSÉES</div></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#E8541A;line-height:1;min-width:44px">3</div><div style="font-size:7px;color:rgba(245,240,235,0.6);text-transform:uppercase;letter-spacing:1px;line-height:1.5">NOUVEAUX<br>MEMBRES</div></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#E8541A;line-height:1;min-width:44px">1</div><div style="font-size:7px;color:rgba(245,240,235,0.6);text-transform:uppercase;letter-spacing:1px;line-height:1.5">RECORD<br>PERSONNEL</div></div>
+      <div style="height:1px;background:linear-gradient(90deg,#E8541A,transparent);margin-bottom:8px"></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.5);letter-spacing:1px">Semaine prochaine → <span style="color:#2A8C7E;font-weight:600">Nouveau Cross Training</span></div>`,
+    tag:"DIMANCHE · RECAP", titre:"Bilan semaine 1",
+    exemple:"CETTE SEMAINE CHEZ FEAT CLUB :\n\n✅ 47 séances\n✅ 3 nouveaux membres\n✅ 1 record personnel battu\n\nSemaine prochaine 🔥 Nouveau programme Cross Training → DM pour les créneaux",
+    canva:"Barre tri-couleur top · Stats Bebas orange empilées · Divider gradient · Teaser vert bas"
+  },
+
+  // ── SEMAINE 2 ──────────────────────────────────────────────────────────
+  {
+    week:2, day:"LUN", dayNum:8, type:"Conseil", typeColor:"#2A8C7E",
+    bg:"linear-gradient(160deg,#0A1A14,#071510,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.5)",
+    bodyHTML:`
+      <div style="display:inline-block;padding:3px 8px;background:rgba(42,140,126,0.85);border-radius:3px;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#fff;font-weight:600;margin-bottom:10px">TIP DU LUNDI</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;color:#F5F0EB;line-height:1.1;margin-bottom:8px">LE SOMMEIL <span style="color:#E8541A">CONSTRUIT</span> TES MUSCLES</div>
+      <div style="width:28px;height:2px;background:#E8541A;margin-bottom:8px;border-radius:2px"></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.85);line-height:1.6">Pas de récupération = pas de progrès. 7-9h minimum.</div>`,
+    tag:"LUNDI S2 · CONSEIL", titre:"Le sommeil comme outil de progression",
+    exemple:"💪 TIP DU LUNDI\n\nLE SOMMEIL CONSTRUIT TES MUSCLES\n\nTu ne progresses pas pendant la séance. Tu progresses pendant le sommeil. 7-9h minimum, c'est pas négociable.",
+    canva:"Fond très sombre · Badge vert · Titre Bebas · Mot-clé orange · Barre séparateur orange"
+  },
+  {
+    week:2, day:"MAR", dayNum:9, type:"Coulisses", typeColor:"#7E22CE",
+    bg:"linear-gradient(160deg,#1A1208,#0F0C04,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.4)",
+    topBar:"linear-gradient(90deg,#E8541A,#2A8C7E)",
+    bodyHTML:`
+      <div style="display:inline-block;padding:3px 8px;background:rgba(232,84,26,0.7);border-radius:3px;font-size:7px;letter-spacing:1px;text-transform:uppercase;color:#fff;margin-bottom:10px">COULISSES</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:#F5F0EB;line-height:1.1;margin-bottom:8px">LE PROGRAMME<br>DE LA SEMAINE<br><span style="color:#E8541A">EST PRÊT</span></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.5);letter-spacing:2px;text-transform:uppercase">FEAT CLUB · LES COULISSES</div>`,
+    tag:"MARDI S2 · COULISSES", titre:"Préparation du programme hebdo",
+    exemple:"Vidéo : le coach devant son tableau blanc, programme de la semaine.\n\nOverlay : LE PROGRAMME DE LA SEMAINE EST PRÊT\nSous-titre : FEAT CLUB · LES COULISSES",
+    canva:"Vidéo tableau/coach · Overlay léger · Badge orange · Titre Bebas · Mot-clé orange"
+  },
+  {
+    week:2, day:"MER", dayNum:10, type:"Sondage", typeColor:"#E8541A",
+    bg:"linear-gradient(160deg,#E8541A,#C94A16,#A33810)",
+    overlay:"",
+    bodyHTML:`
+      <div style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-bottom:8px">DIS-NOUS TOUT...</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#F5F0EB;line-height:1.2;margin-bottom:14px">QUEL EST TON PLUS GRAND FREIN POUR TE METTRE AU SPORT ?</div>
+      <div style="background:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.4);border-radius:5px;padding:7px 10px;font-size:9px;color:#fff;font-weight:600;text-align:center;margin-bottom:5px">Pas le temps</div>
+      <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:5px;padding:7px 10px;font-size:9px;color:#fff;font-weight:600;text-align:center">Pas la motivation</div>`,
+    tag:"MERCREDI S2 · SONDAGE", titre:"Le plus grand frein au sport",
+    exemple:"DIS-NOUS TOUT...\n\nQUEL EST TON PLUS GRAND FREIN POUR TE METTRE AU SPORT ?\n\n🗳️ Pas le temps\n🗳️ Pas la motivation\n\n(On a peut-être la solution 😉)",
+    canva:"Fond orange dégradé · Question Bebas · 2 options widget sondage Instagram natif"
+  },
+  {
+    week:2, day:"JEU", dayNum:11, type:"Citation", typeColor:"#C2410C",
+    bg:"linear-gradient(160deg,#180C06,#0F0804,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.6)",
+    leftBar:"linear-gradient(to bottom,#2A8C7E,#E8541A)",
+    bodyHTML:`
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(232,84,26,0.3);line-height:1">"</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;color:#F5F0EB;line-height:1.2;margin-bottom:10px">LA DISCIPLINE <span style="color:#E8541A">DÉPASSE</span> TOUJOURS LA MOTIVATION.</div>
+      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#2A8C7E">— Feat Club · Back to Basics</div>`,
+    tag:"JEUDI S2 · CITATION", titre:"Discipline vs motivation",
+    exemple:'"LA DISCIPLINE DÉPASSE TOUJOURS LA MOTIVATION."\n\nLa motivation, ça va et ça vient. La discipline, ça reste.\n\n— Feat Club · Back to Basics\n\n→ Tague quelqu\'un qui en a besoin 👇',
+    canva:"Fond très sombre · Barre gauche gradient vert/orange · Guillemet transparent · Citation Bebas"
+  },
+  {
+    week:2, day:"VEN", dayNum:12, type:"Promo", typeColor:"#BE123C",
+    bg:"linear-gradient(160deg,#0A0A1A,#060610,#0A0A0A)",
+    overlay:"",
+    topHalf:"linear-gradient(135deg,#1A1A3A,#0A0A1A)",
+    bodyHTML:`
+      <div style="background:rgba(232,84,26,0.9);display:inline-block;padding:4px 10px;border-radius:3px;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#fff;font-weight:600;margin-bottom:10px">SÉANCE D'ESSAI</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#F5F0EB;line-height:1;margin-bottom:6px">OFFERTE</div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.75);line-height:1.8;margin-bottom:10px">Small Group · Personal Training<br>Pilates · Boxe</div>
+      <div style="background:#E8541A;color:#fff;padding:6px 14px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:inline-block">DM 'ESSAI' →</div>`,
+    tag:"VENDREDI S2 · PROMO", titre:"Séance d'essai offerte",
+    exemple:"🎁 SÉANCE D'ESSAI OFFERTE\n\nSmall Group · Personal Training · Pilates · Boxe\n\nChoisis ta discipline.\nViens tester sans engagement.\n\nDM 'ESSAI' pour réserver 📩",
+    canva:"Fond sombre · Badge orange · OFFERTE très grand · Liste formats · CTA orange"
+  },
+  {
+    week:2, day:"SAM", dayNum:13, type:"Communauté", typeColor:"#1D4ED8",
+    bg:"linear-gradient(160deg,#1A0E08,#100804,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.55)",
+    bottomBar:"linear-gradient(90deg,#E8541A,#2A8C7E)",
+    bodyHTML:`
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:#F5F0EB;line-height:1.1;margin-bottom:8px">LE RUN CLUB<br><span style="color:#E8541A">DU MOIS</span></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.6);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">8KM · PARC ST-CLOUD</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <div style="background:rgba(42,140,126,0.3);border:1px solid rgba(42,140,126,0.5);border-radius:3px;padding:3px 7px;font-size:7px;color:#2A8C7E;letter-spacing:1px">TOUS NIVEAUX</div>
+        <div style="background:rgba(232,84,26,0.3);border:1px solid rgba(232,84,26,0.5);border-radius:3px;padding:3px 7px;font-size:7px;color:#E8541A;letter-spacing:1px">GRATUIT MEMBRES</div>
+      </div>`,
+    tag:"SAMEDI S2 · COMMUNAUTÉ", titre:"Run Club mensuel",
+    exemple:"🏃 LE RUN CLUB DU MOIS\n\n8km · Parc de Saint-Cloud\nSamedi 9h · Tous niveaux\n\nGratuit pour les membres 🤝\nTaguer tes co-équipiers 👇",
+    canva:"Photo parcours fond · Overlay sombre · Titre Bebas · Badges vert/orange · Barre bottom"
+  },
+  {
+    week:2, day:"DIM", dayNum:14, type:"Recap", typeColor:"#475569",
+    bg:"linear-gradient(160deg,#12100A,#0C0A06,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.65)",
+    topBar:"linear-gradient(90deg,#2A8C7E,#E8541A,#2A8C7E)",
+    bodyHTML:`
+      <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#2A8C7E;margin-bottom:12px;font-weight:600">BILAN S2</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#E8541A;line-height:1;min-width:44px">52</div><div style="font-size:7px;color:rgba(245,240,235,0.6);text-transform:uppercase;letter-spacing:1px;line-height:1.5">SÉANCES<br>DISPENSÉES</div></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#E8541A;line-height:1;min-width:44px">18</div><div style="font-size:7px;color:rgba(245,240,235,0.6);text-transform:uppercase;letter-spacing:1px;line-height:1.5">RUNNERS<br>AU RUN CLUB</div></div>
+      <div style="height:1px;background:linear-gradient(90deg,#2A8C7E,transparent);margin-bottom:8px"></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.5)">Semaine 3 → <span style="color:#E8541A;font-weight:600">Workshop Nutrition</span></div>`,
+    tag:"DIMANCHE S2 · RECAP", titre:"Bilan semaine 2 + teaser workshop",
+    exemple:"BILAN SEMAINE 2 :\n\n✅ 52 séances\n✅ 18 participants au Run Club\n\nSemaine 3 → Workshop Nutrition 🥗\nPlaces limitées → DM pour réserver",
+    canva:"Barre vert/orange/vert top · Stats Bebas · Divider vert · Teaser orange"
+  },
+
+  // ── SEMAINE 3 ──────────────────────────────────────────────────────────
+  {
+    week:3, day:"LUN", dayNum:15, type:"Conseil", typeColor:"#2A8C7E",
+    bg:"linear-gradient(160deg,#0F1A10,#080F08,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.5)",
+    bodyHTML:`
+      <div style="display:inline-block;padding:3px 8px;background:rgba(42,140,126,0.85);border-radius:3px;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#fff;font-weight:600;margin-bottom:10px">TIP DU LUNDI</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:1px;color:#F5F0EB;line-height:1.1;margin-bottom:8px">LA REGULARITE<br><span style="color:#E8541A">BAT</span><br>L'INTENSITE</div>
+      <div style="width:28px;height:2px;background:#E8541A;margin-bottom:8px;border-radius:2px"></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.85);line-height:1.6">3 fois/semaine pendant 6 mois > 1 mois intense + abandon.</div>`,
+    tag:"LUNDI S3 · CONSEIL", titre:"Régularité vs intensité",
+    exemple:"💪 TIP DU LUNDI\n\nLA RÉGULARITÉ BAT L'INTENSITÉ\n\n3 séances par semaine pendant 6 mois valent 100x mieux qu'un mois intense suivi d'un abandon.\n\nLa constance, c'est la vraie performance.",
+    canva:"Fond sombre vert · Badge vert · Titre Bebas · BAT en orange · Corps DM Sans"
+  },
+  {
+    week:3, day:"MAR", dayNum:16, type:"Coulisses", typeColor:"#7E22CE",
+    bg:"linear-gradient(160deg,#1A0E18,#100814,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.45)",
+    topBar:"linear-gradient(90deg,#2A8C7E,#E8541A)",
+    bodyHTML:`
+      <div style="display:inline-block;padding:3px 8px;background:rgba(42,140,126,0.7);border-radius:3px;font-size:7px;letter-spacing:1px;text-transform:uppercase;color:#fff;margin-bottom:10px">COULISSES</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;color:#F5F0EB;line-height:1.1;margin-bottom:8px">LE COACH<br>SE FORME<br><span style="color:#E8541A">AUSSI</span></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.5);letter-spacing:1px;text-transform:uppercase">FORMATION CONTINUE · FEAT CLUB</div>`,
+    tag:"MARDI S3 · COULISSES", titre:"Formation continue du coach",
+    exemple:"Le coach aussi se forme. Parce que t'aider à progresser, ça demande d'être toujours au top.\n\nOverlay : LE COACH SE FORME AUSSI\nSous-titre : FORMATION CONTINUE · FEAT CLUB",
+    canva:"Photo coach en formation fond · Overlay léger · Badge vert · Titre Bebas · Mot-clé orange"
+  },
+  {
+    week:3, day:"MER", dayNum:17, type:"Quiz", typeColor:"#E8541A",
+    bg:"linear-gradient(160deg,#1A0808,#120404,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.3)",
+    bodyHTML:`
+      <div style="background:rgba(232,84,26,0.9);display:inline-block;padding:3px 10px;border-radius:20px;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#fff;font-weight:600;margin-bottom:10px">QUIZ SPORT</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;color:#F5F0EB;line-height:1.2;margin-bottom:12px">COMBIEN DE TEMPS FAUT-IL POUR CRÉER UNE HABITUDE SPORTIVE ?</div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:4px;padding:6px 10px;font-size:9px;color:#fff;text-align:center">21 jours</div>
+        <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:4px;padding:6px 10px;font-size:9px;color:#fff;text-align:center">66 jours</div>
+        <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:4px;padding:6px 10px;font-size:9px;color:#fff;text-align:center">90 jours</div>
+      </div>`,
+    tag:"MERCREDI S3 · QUIZ", titre:"Quiz : créer une habitude sportive",
+    exemple:"🧠 QUIZ SPORT\n\nCOMBIEN DE TEMPS FAUT-IL POUR CRÉER UNE HABITUDE SPORTIVE ?\n\n🗳️ 21 jours\n🗳️ 66 jours\n🗳️ 90 jours\n\nRéponse demain 👇 (indice : c'est pas 21 😉)",
+    canva:"Fond sombre · Badge orange pill · Question Bebas · 3 options Instagram quiz sticker"
+  },
+  {
+    week:3, day:"JEU", dayNum:18, type:"Citation", typeColor:"#C2410C",
+    bg:"linear-gradient(160deg,#0A1810,#061008,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.6)",
+    leftBar:"linear-gradient(to bottom,#E8541A,#2A8C7E)",
+    bodyHTML:`
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(42,140,126,0.3);line-height:1">"</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;color:#F5F0EB;line-height:1.2;margin-bottom:10px">CE QUE TU FAIS<br>AUJOURD'HUI<br><span style="color:#E8541A">FAÇONNE</span> DEMAIN.</div>
+      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#2A8C7E">— Feat Club · Featness not Fitness</div>`,
+    tag:"JEUDI S3 · CITATION", titre:"Aujourd'hui façonne demain",
+    exemple:'"CE QUE TU FAIS AUJOURD\'HUI FAÇONNE DEMAIN."\n\nPas besoin d\'une séance parfaite. Besoin d\'une séance.\n\n— Feat Club\n\n→ Partage à quelqu\'un qui hésite 👇',
+    canva:"Fond très sombre · Barre gauche orange/vert · Guillemet vert transparent · Citation Bebas · Signature vert"
+  },
+  {
+    week:3, day:"VEN", dayNum:19, type:"Promo", typeColor:"#BE123C",
+    bg:"linear-gradient(160deg,#1A1208,#100C04,#0A0A0A)",
+    overlay:"",
+    topHalf:"linear-gradient(135deg,#2A8C7E,#1A6058)",
+    bodyHTML:`
+      <div style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,235,0.9);margin-bottom:3px">WORKSHOP</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:#F5F0EB;line-height:1;margin-bottom:4px">NUTRITION<br>SPORTIVE</div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.8);margin-bottom:10px">Mercredi prochain · 19h30</div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.7);line-height:2">6 places max<br>Supports inclus<br>Expert invité</div>
+      <div style="margin-top:10px;background:#F5F0EB;color:#2A8C7E;padding:6px 14px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:inline-block">RÉSERVER →</div>`,
+    tag:"VENDREDI S3 · PROMO", titre:"Workshop Nutrition Sportive",
+    exemple:"⚡ WORKSHOP NUTRITION SPORTIVE\n\nMercredi · 19h30 · Feat Club\n\n✅ 6 places max\n✅ Expert invité\n✅ Supports inclus\n\nDM 'WORKSHOP' pour réserver 📩",
+    canva:"Fond sombre · Moitié haute vert · NUTRITION SPORTIVE grand · CTA bouton vert/blanc"
+  },
+  {
+    week:3, day:"SAM", dayNum:20, type:"Communauté", typeColor:"#1D4ED8",
+    bg:"linear-gradient(160deg,#0A1A0A,#060E06,#0A0A0A)",
+    overlay:"linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.15) 60%)",
+    bottomBar:"linear-gradient(90deg,#2A8C7E,#E8541A)",
+    bodyHTML:`
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;color:#F5F0EB;line-height:1.1;margin-bottom:6px;text-align:center">BEFORE & AFTER<br><span style="color:#E8541A">ÉTAT D'ESPRIT</span></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.55);text-align:center;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">LE TÉMOIGNAGE DE LA SEMAINE</div>
+      <div style="background:rgba(255,255,255,0.06);border-left:2px solid #E8541A;padding:8px 10px;border-radius:0 4px 4px 0">
+        <div style="font-size:8px;color:rgba(245,240,235,0.75);line-height:1.5;font-style:italic">"Je venais pour perdre du poids. Je reste pour l'ambiance."</div>
+        <div style="font-size:7px;color:#2A8C7E;margin-top:4px;letter-spacing:1px">— MARIE, MEMBRE DEPUIS 4 MOIS</div>
+      </div>`,
+    tag:"SAMEDI S3 · COMMUNAUTÉ", titre:"Témoignage membre : Marie",
+    exemple:"💬 TÉMOIGNAGE DE LA SEMAINE\n\n\"Je venais pour perdre du poids. Je reste pour l'ambiance.\"\n\n— Marie, membre depuis 4 mois\n\nC'est ça Feat Club. 🤝",
+    canva:"Photo membre en séance fond · Overlay bas · Citation bloc avec barre orange gauche · Signature vert"
+  },
+  {
+    week:3, day:"DIM", dayNum:21, type:"Recap", typeColor:"#475569",
+    bg:"linear-gradient(160deg,#0A1810,#061008,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.65)",
+    topBar:"linear-gradient(90deg,#E8541A,#2A8C7E,#E8541A)",
+    bodyHTML:`
+      <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#E8541A;margin-bottom:12px;font-weight:600">BILAN S3</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#E8541A;line-height:1;min-width:44px">6</div><div style="font-size:7px;color:rgba(245,240,235,0.6);text-transform:uppercase;letter-spacing:1px;line-height:1.5">PLACES AU<br>WORKSHOP</div></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#E8541A;line-height:1;min-width:44px">6</div><div style="font-size:7px;color:rgba(245,240,235,0.6);text-transform:uppercase;letter-spacing:1px;line-height:1.5">PRÉSENTS<br>COMPLET !</div></div>
+      <div style="height:1px;background:linear-gradient(90deg,#E8541A,transparent);margin-bottom:8px"></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.5)">Semaine 4 → <span style="color:#2A8C7E;font-weight:600">Défi 7 jours</span></div>`,
+    tag:"DIMANCHE S3 · RECAP", titre:"Bilan semaine 3 + teaser défi",
+    exemple:"BILAN SEMAINE 3 :\n\n✅ Workshop Nutrition complet (6/6)\n✅ 3 nouvelles inscriptions PT\n\nSemaine 4 → DÉFI 7 JOURS 🔥\nTu participes ? DM 'DEFI'",
+    canva:"Barre orange/vert/orange top · Stats Bebas orange · Divider · Teaser vert bas"
+  },
+
+  // ── SEMAINE 4 ──────────────────────────────────────────────────────────
+  {
+    week:4, day:"LUN", dayNum:22, type:"Défi", typeColor:"#E8541A",
+    bg:"linear-gradient(160deg,#2A0A08,#1A0604,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.4)",
+    bodyHTML:`
+      <div style="display:inline-block;padding:3px 8px;background:rgba(232,84,26,0.9);border-radius:3px;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#fff;font-weight:600;margin-bottom:10px">🔥 DÉFI 7 JOURS</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:1px;color:#F5F0EB;line-height:1.1;margin-bottom:8px">7 JOURS.<br>1 SÉANCE<br>PAR JOUR.</div>
+      <div style="width:28px;height:2px;background:#2A8C7E;margin-bottom:8px;border-radius:2px"></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.85);line-height:1.6">Tu relèves le défi ? DM 'DEFI' pour rejoindre le groupe.</div>`,
+    tag:"LUNDI S4 · DÉFI", titre:"Lancement du défi 7 jours",
+    exemple:"🔥 DÉFI 7 JOURS\n\n7 JOURS. 1 SÉANCE PAR JOUR.\n\nRègles simples :\n→ Une séance par jour minimum\n→ Tu postes ta progression en story\n→ On se motive ensemble\n\nDM 'DEFI' pour rejoindre 💪",
+    canva:"Fond très sombre rouge · Badge orange · Chiffres forts · Barre vert · Corps DM Sans"
+  },
+  {
+    week:4, day:"MAR", dayNum:23, type:"Coulisses", typeColor:"#7E22CE",
+    bg:"linear-gradient(160deg,#0A0A1A,#060610,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.45)",
+    topBar:"linear-gradient(90deg,#E8541A,#2A8C7E)",
+    bodyHTML:`
+      <div style="display:inline-block;padding:3px 8px;background:rgba(42,140,126,0.7);border-radius:3px;font-size:7px;letter-spacing:1px;text-transform:uppercase;color:#fff;margin-bottom:10px">COULISSES DÉFI</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;color:#F5F0EB;line-height:1.1;margin-bottom:8px">JOUR 2.<br>ILS TIENNENT<br><span style="color:#E8541A">TOUS</span></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.5);letter-spacing:1px;text-transform:uppercase">DÉFI 7 JOURS · FEAT CLUB</div>`,
+    tag:"MARDI S4 · COULISSES", titre:"Coulisses défi jour 2",
+    exemple:"Vidéo : participants du défi en séance, énergie, sueur.\n\nOverlay : JOUR 2. ILS TIENNENT TOUS.\nSous-titre : DÉFI 7 JOURS · FEAT CLUB",
+    canva:"Vidéo coulisses séance · Overlay léger · Badge vert · Titre Bebas · TOUS en orange"
+  },
+  {
+    week:4, day:"MER", dayNum:24, type:"Sondage", typeColor:"#E8541A",
+    bg:"linear-gradient(160deg,#E8541A,#C94A16,#8A2A08)",
+    overlay:"",
+    bodyHTML:`
+      <div style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-bottom:8px">DÉFI EN COURS...</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#F5F0EB;line-height:1.2;margin-bottom:14px">TU RESSENS QUOI APRÈS 3 JOURS DE DÉFI ?</div>
+      <div style="background:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.4);border-radius:5px;padding:7px 10px;font-size:9px;color:#fff;font-weight:600;text-align:center;margin-bottom:5px">Épuisé(e) 😅</div>
+      <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:5px;padding:7px 10px;font-size:9px;color:#fff;font-weight:600;text-align:center">En feu 🔥</div>`,
+    tag:"MERCREDI S4 · SONDAGE", titre:"Ressenti mi-défi",
+    exemple:"DÉFI EN COURS...\n\nTU RESSENS QUOI APRÈS 3 JOURS DE DÉFI ?\n\n🗳️ Épuisé(e) 😅\n🗳️ En feu 🔥\n\nOn partage les résultats demain avec un conseil 👇",
+    canva:"Fond orange dégradé foncé · Question Bebas · Sondage Instagram natif"
+  },
+  {
+    week:4, day:"JEU", dayNum:25, type:"Citation", typeColor:"#C2410C",
+    bg:"linear-gradient(160deg,#1A0808,#100404,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.55)",
+    leftBar:"linear-gradient(to bottom,#E8541A,#2A8C7E)",
+    bodyHTML:`
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(232,84,26,0.3);line-height:1">"</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;color:#F5F0EB;line-height:1.2;margin-bottom:10px">LA FATIGUE<br>D'AUJOURD'HUI<br>EST LA <span style="color:#E8541A">FORCE</span> DE DEMAIN.</div>
+      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#2A8C7E">— Feat Club · Défi J5</div>`,
+    tag:"JEUDI S4 · CITATION", titre:"La fatigue d'aujourd'hui",
+    exemple:'"LA FATIGUE D\'AUJOURD\'HUI EST LA FORCE DE DEMAIN."\n\nJour 5 du défi. On lâche rien.\n\n— Feat Club\n\n→ Tague ton partenaire de défi 💪',
+    canva:"Fond très sombre · Barre gauche orange/vert · Citation Bebas · FORCE en orange · Signature vert"
+  },
+  {
+    week:4, day:"VEN", dayNum:26, type:"Promo", typeColor:"#BE123C",
+    bg:"linear-gradient(160deg,#0A1A0A,#060E06,#0A0A0A)",
+    overlay:"",
+    topHalf:"linear-gradient(135deg,#E8541A,#BF3D0A)",
+    bodyHTML:`
+      <div style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,235,0.9);margin-bottom:3px">DERNIER JOUR</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#F5F0EB;line-height:1;margin-bottom:4px">DU DÉFI</div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.8);margin-bottom:8px">Demain : cérémonie des finishers 🏆</div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.7);line-height:2">1 mois offert au meilleur<br>participant voté par la communauté</div>
+      <div style="margin-top:10px;background:#F5F0EB;color:#E8541A;padding:6px 14px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:inline-block">VOTER →</div>`,
+    tag:"VENDREDI S4 · PROMO", titre:"Dernier jour du défi + vote",
+    exemple:"🏆 DERNIER JOUR DU DÉFI\n\nDemain : cérémonie des finishers\n\n→ Vote pour le meilleur participant\n→ Prix : 1 mois offert\n\nLien du vote en bio 👆",
+    canva:"Fond sombre · Moitié haute orange · DERNIER JOUR grand · Prix listé · CTA blanc/orange"
+  },
+  {
+    week:4, day:"SAM", dayNum:27, type:"Communauté", typeColor:"#1D4ED8",
+    bg:"linear-gradient(160deg,#1A0A04,#100604,#0A0A0A)",
+    overlay:"linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.15) 60%)",
+    bottomBar:"linear-gradient(90deg,#E8541A,#2A8C7E)",
+    bodyHTML:`
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:#F5F0EB;line-height:1.1;margin-bottom:6px;text-align:center">LES FINISHERS<br><span style="color:#E8541A">DU DÉFI</span></div>
+      <div style="font-size:8px;color:#2A8C7E;letter-spacing:1px;text-transform:uppercase;font-weight:600;text-align:center;margin-bottom:8px">7 JOURS · 100% DES PARTICIPANTS</div>
+      <div style="display:flex;justify-content:center;gap:4px;flex-wrap:wrap">
+        <div style="background:rgba(232,84,26,0.2);border:1px solid rgba(232,84,26,0.4);border-radius:20px;padding:3px 8px;font-size:7px;color:#E8541A;letter-spacing:1px">7 JOURS ✓</div>
+        <div style="background:rgba(42,140,126,0.2);border:1px solid rgba(42,140,126,0.4);border-radius:20px;padding:3px 8px;font-size:7px;color:#2A8C7E;letter-spacing:1px">100% FINIS</div>
+      </div>`,
+    tag:"SAMEDI S4 · COMMUNAUTÉ", titre:"Cérémonie des finishers du défi",
+    exemple:"🏆 LES FINISHERS DU DÉFI\n\n7 jours. 100% des participants ont terminé.\n\nC'est ça Feat Club. On ne lâche pas.\n\nTaguer tous les participants 👇🏆",
+    canva:"Photo groupe finishers fond · Overlay bas · Titre Bebas · Badges orange/vert · Barre bottom"
+  },
+  {
+    week:4, day:"DIM", dayNum:28, type:"Recap", typeColor:"#475569",
+    bg:"linear-gradient(160deg,#1A1408,#100E04,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.65)",
+    topBar:"linear-gradient(90deg,#E8541A,#2A8C7E,#E8541A)",
+    bodyHTML:`
+      <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#E8541A;margin-bottom:10px;font-weight:600">BILAN 30 JOURS</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px"><div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:#E8541A;line-height:1;min-width:44px">197</div><div style="font-size:7px;color:rgba(245,240,235,0.6);text-transform:uppercase;letter-spacing:1px;line-height:1.5">SÉANCES<br>EN 30 JOURS</div></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px"><div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:#E8541A;line-height:1;min-width:44px">12</div><div style="font-size:7px;color:rgba(245,240,235,0.6);text-transform:uppercase;letter-spacing:1px;line-height:1.5">NOUVEAUX<br>MEMBRES</div></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:#2A8C7E;line-height:1;min-width:44px">∞</div><div style="font-size:7px;color:rgba(245,240,235,0.6);text-transform:uppercase;letter-spacing:1px;line-height:1.5">ÉNERGIE<br>FEAT CLUB</div></div>
+      <div style="height:1px;background:linear-gradient(90deg,#E8541A,#2A8C7E,transparent);margin-bottom:8px"></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.5)">Mois 2 → <span style="color:#E8541A;font-weight:600">Encore plus fort 🔥</span></div>`,
+    tag:"DIMANCHE S4 · RECAP", titre:"Bilan 30 jours complet",
+    exemple:"BILAN 30 JOURS CHEZ FEAT CLUB :\n\n✅ 197 séances dispensées\n✅ 12 nouveaux membres\n✅ 1 défi 7 jours finishé à 100%\n\nMois 2 → Encore plus fort 🔥\nMerci à toute la communauté Feat Club 🧡",
+    canva:"Barre triple couleur top · 3 stats Bebas dont ∞ vert · Divider gradient · Message final bas"
+  },
+  // 2 stories bonus jours 29-30
+  {
+    week:4, day:"LUN", dayNum:29, type:"Conseil", typeColor:"#2A8C7E",
+    bg:"linear-gradient(160deg,#0A1A14,#071510,#0A0A0A)",
+    overlay:"rgba(0,0,0,0.5)",
+    bodyHTML:`
+      <div style="display:inline-block;padding:3px 8px;background:rgba(42,140,126,0.85);border-radius:3px;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#fff;font-weight:600;margin-bottom:10px">TIP BONUS</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:1px;color:#F5F0EB;line-height:1.1;margin-bottom:8px">LA PROTEINE<br><span style="color:#E8541A">N'EST PAS</span><br>QU'APRES</div>
+      <div style="width:28px;height:2px;background:#E8541A;margin-bottom:8px;border-radius:2px"></div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.85);line-height:1.6">Répartis l'apport tout au long de la journée. 20-40g par repas.</div>`,
+    tag:"JOUR 29 · CONSEIL BONUS", titre:"La protéine répartie sur la journée",
+    exemple:"💪 TIP BONUS\n\nLA PROTÉINE N'EST PAS QU'APRÈS\n\nRépartis ton apport protéique sur toute la journée. 20-40g par repas. Le shaker post-séance seul ne suffit pas.",
+    canva:"Fond sombre vert · Badge vert · Titre Bebas · N'EST PAS en orange · Corps DM Sans"
+  },
+  {
+    week:4, day:"MAR", dayNum:30, type:"Annonce", typeColor:"#E8541A",
+    bg:"linear-gradient(160deg,#1A0A04,#100604,#0A0A0A)",
+    overlay:"",
+    topHalf:"linear-gradient(135deg,#E8541A,#BF3D0A)",
+    bodyHTML:`
+      <div style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,235,0.9);margin-bottom:3px">ÇA CONTINUE</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#F5F0EB;line-height:1;margin-bottom:4px">MOIS 2<br>EN ROUTE</div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.8);margin-bottom:10px">Nouvelles offres · Nouveau programme</div>
+      <div style="font-size:8px;color:rgba(245,240,235,0.7);line-height:2">Early-bird membres existants<br>Tarifs spéciaux ce mois</div>
+      <div style="margin-top:10px;background:#F5F0EB;color:#E8541A;padding:6px 14px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:inline-block">EN SAVOIR + →</div>`,
+    tag:"JOUR 30 · ANNONCE", titre:"Lancement Mois 2 — early bird",
+    exemple:"🚀 MOIS 2 EN ROUTE\n\nNouveaux programmes · Nouvelles offres\n\nEarly-bird réservé aux membres actuels\nOffre valable 48h\n\nDM 'MOIS2' pour en savoir + 📩",
+    canva:"Fond sombre · Moitié haute orange · MOIS 2 grand · Avantages listés · CTA blanc/orange"
   }
 ];
 
-function renderStories() {
-  const grid = document.getElementById('stories-grid');
-  grid.innerHTML = stories.map((s, i) => `
-    <div class="story-card" onclick="showStoryDetail(${i})" id="story-card-${i}">
-      <div class="story-card-header">
-        <div class="story-day">${s.day}</div>
-        <div>
-          <div class="story-day-name">${s.dayFull}</div>
-          <span class="story-type-tag" style="background:${s.color};color:${s.tc};border:0.5px solid ${s.border}">${s.type}</span>
-        </div>
-      </div>
-      <div class="story-card-body">
-        <div class="story-idea">${s.idea}</div>
-        <div class="story-format">${s.format}</div>
-      </div>
-    </div>
-  `).join('');
+let currentWeek = 1;
+let currentStoryId = null;
+
+function showWeek(w, e) {
+  currentWeek = w;
+  document.querySelectorAll('.week-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.week-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('week-' + w).classList.add('active');
+  e.target.classList.add('active');
+  document.getElementById('story-detail').style.display = 'none';
+  currentStoryId = null;
 }
 
-function showStoryDetail(i) {
-  document.querySelectorAll('.story-card').forEach(c => c.classList.remove('selected'));
-  document.getElementById('story-card-' + i).classList.add('selected');
-  const s = stories[i];
+function buildPhoneHTML(s) {
+  const topBar = s.topBar ? `<div style="position:absolute;top:0;left:0;right:0;height:4px;background:${s.topBar};z-index:3;border-radius:22px 22px 0 0"></div>` : '';
+  const bottomBar = s.bottomBar ? `<div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:${s.bottomBar};z-index:3;border-radius:0 0 22px 22px"></div>` : '';
+  const leftBar = s.leftBar ? `<div style="position:absolute;left:0;top:18%;bottom:18%;width:4px;background:${s.leftBar};z-index:3;border-radius:0 2px 2px 0"></div>` : '';
+  const topHalf = s.topHalf ? `<div style="position:absolute;top:0;left:0;right:0;height:42%;background:${s.topHalf};z-index:1"></div>` : '';
+  const overlay = s.overlay ? `<div class="overlay" style="background:${s.overlay}"></div>` : '';
+  const pbarActive = s.topBar ? 'style="background:rgba(255,255,255,0.7)"' : '';
+  const pbarInactive = s.topBar ? 'style="background:rgba(255,255,255,0.35)"' : '';
+  const pavatarStyle = s.topHalf ? 'style="background:#fff;color:#E8541A"' : (s.bottomBar && s.bottomBar.includes('2A8C7E') ? 'style="background:#2A8C7E"' : '');
+
+  return `
+    <div class="photo-bg" style="background:${s.bg}"></div>
+    ${overlay}${topBar}${bottomBar}${leftBar}${topHalf}
+    <div class="phone-inner" style="position:relative;z-index:${s.topHalf?'3':'2'}">
+      <div class="pbar">
+        <div class="pseg on" ${pbarActive}></div>
+        <div class="pseg" ${pbarInactive}></div>
+        <div class="pseg" ${pbarInactive}></div>
+      </div>
+      <div class="puser">
+        <div class="pavatar" ${pavatarStyle}>FC</div>
+        <span class="pname">featclub.fr</span>
+      </div>
+      <div class="pcontent" style="position:relative;z-index:2">
+        ${s.bodyHTML}
+      </div>
+      <div style="text-align:center;font-family:'Bebas Neue',sans-serif;font-size:7px;letter-spacing:3px;color:rgba(245,240,235,0.15);position:relative;z-index:2">@FEATCLUB.FR</div>
+    </div>`;
+}
+
+function renderWeeks() {
+  [1,2,3,4].forEach(w => {
+    const container = document.getElementById('week-' + w);
+    const weekStories = stories30.filter(s => s.week === w);
+    container.innerHTML = `
+      <div class="stories-row">
+        ${weekStories.map(s => `
+          <div class="story-wrap">
+            <div class="phone" onclick="showStoryDetail(${s.dayNum})" id="phone-${s.dayNum}">
+              ${buildPhoneHTML(s)}
+            </div>
+            <div class="day-name">${s.day} J${s.dayNum}</div>
+            <div class="day-type">${s.type}</div>
+          </div>
+        `).join('')}
+      </div>`;
+  });
+}
+
+function showStoryDetail(dayNum) {
+  const s = stories30.find(x => x.dayNum === dayNum);
+  document.querySelectorAll('.phone').forEach(p => p.classList.remove('selected'));
+  document.getElementById('phone-' + dayNum).classList.add('selected');
+  currentStoryId = dayNum;
+
   const detail = document.getElementById('story-detail');
-  const content = document.getElementById('story-detail-content');
-  detail.classList.add('visible');
+  detail.style.display = 'block';
+  detail.innerHTML = `
+    <div class="detail-head">
+      <div class="detail-tag">${s.tag}</div>
+      <div class="detail-title">${s.titre.toUpperCase()}</div>
+    </div>
+    <div class="detail-grid">
+      <div>
+        <div class="dlabel" style="color:#E8541A">✨ Exemple / texte overlay</div>
+        <div class="dcontent">${s.exemple.replace(/\n/g,'<br>')}</div>
+      </div>
+      <div>
+        <div class="dlabel" style="color:#2A8C7E">🎨 Instructions Canva</div>
+        <div class="dcontent">${s.canva}</div>
+      </div>
+    </div>
+    <button class="s-copy-btn" onclick="copyStoryEx(${dayNum})">Copier l'exemple</button>`;
 
-  content.innerHTML = `
-    <div class="detail-header">
-      <div class="detail-day-label">${s.dayFull} · ${s.type}</div>
-      <div class="detail-title">${s.idea}</div>
-    </div>
-    <div class="detail-section">
-      <div class="detail-label" style="color:#2A8C7E">📋 Structure</div>
-      <div class="detail-content">${s.legende.replace(/\n/g,'<br>')}</div>
-    </div>
-    <div class="detail-section">
-      <div class="detail-label" style="color:#E8541A">✨ Exemple concret</div>
-      <div class="detail-content">${s.exemple.replace(/\n/g,'<br>')}</div>
-    </div>
-    <div class="detail-section">
-      <div class="detail-label" style="color:#888">🎯 CTA</div>
-      <div class="detail-content">${s.cta}</div>
-    </div>
-    <div class="detail-section">
-      <div class="detail-label" style="color:#7E22CE">🎨 Design</div>
-      <div class="detail-content detail-tip">${s.structure}</div>
-    </div>
-    <div class="detail-section" style="padding-bottom:0">
-      <div class="detail-label" style="color:#B45309">💡 Conseil</div>
-      <div class="detail-content detail-tip">${s.conseil}</div>
-    </div>
-    <div style="padding:16px 20px">
-      <button class="copy-btn-full" onclick="copyStory(${i})">Copier l'exemple</button>
-    </div>
-  `;
-
-  if (window.innerWidth <= 700) {
-    detail.scrollIntoView({ behavior: 'smooth' });
-  }
+  detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-function copyStory(i) {
-  const s = stories[i];
+function copyStoryEx(dayNum) {
+  const s = stories30.find(x => x.dayNum === dayNum);
   navigator.clipboard.writeText(s.exemple);
-  const btn = event.target;
-  btn.textContent = '✓ Copié !';
-  btn.classList.add('copied');
-  setTimeout(() => { btn.textContent = 'Copier l\'exemple'; btn.classList.remove('copied'); }, 2000);
+  const btn = document.querySelector('.s-copy-btn');
+  btn.textContent = '✓ Copié !'; btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = "Copier l'exemple"; btn.classList.remove('copied'); }, 2000);
 }
 
-// POSTS DATA
+/* ═══════════════════ POSTS DATA ════════════════════════════════════════ */
 const postsPeople = [
   {
-    num: "01", title: "Lucas — Transformation 3 mois",
-    sub: "Personal Training · Prise de masse",
-    legende: "FEAT PEOPLE 👤\n\nLucas, 28 ans, ingénieur.\nObjectif : reprendre le sport après 2 ans d'arrêt.\n\n3 mois de Personal Training chez Feat Club :\n→ +5kg de muscle\n→ -4% masse grasse\n→ Et surtout : une routine qu'il tient enfin.\n\n\"Je cherchais pas un coach. Je cherchais une méthode. J'ai trouvé les deux.\"\n\nC'est ça Feat Club.",
-    cta: "Ta transformation commence ici → séance d'essai gratuite en bio 👆",
-    hashtags: "#FeatClub #FeatPeople #Transformation #PersonalTraining #BackToBasics #BoulogneBillancourt #CoachSportif #FeatnessNotFitness",
-    visuel: "Portrait du membre + 1 stat forte en overlay. Fond sombre. Citation en italique. Logo Feat Club en bas."
+    num:"01", title:"Lucas — Transformation 3 mois", sub:"Personal Training · Prise de masse",
+    hook:{ texte:"+5KG DE MUSCLE", soustitre:"EN 3 MOIS · FEAT CLUB", badge:"FEAT PEOPLE", position:"Chiffre en très grand orange centré · sous-titre blanc discret · badge vert haut gauche", conseil:"Le chiffre stoppe le scroll. Tout le reste se lit après." },
+    legende:"FEAT PEOPLE 👤\n\nLucas, 28 ans, ingénieur.\nObjectif : reprendre le sport après 2 ans d'arrêt.\n\n3 mois de Personal Training chez Feat Club :\n→ +5kg de muscle\n→ -4% masse grasse\n→ Et surtout : une routine qu'il tient enfin.\n\n\"Je cherchais pas un coach. Je cherchais une méthode. J'ai trouvé les deux.\"\n\nC'est ça Feat Club.",
+    cta:"Ta transformation commence ici → séance d'essai gratuite en bio 👆",
+    hashtags:"#FeatClub #FeatPeople #Transformation #PersonalTraining #BackToBasics #BoulogneBillancourt #CoachSportif #FeatnessNotFitness",
+    visuel:"Portrait membre + stat forte overlay. Fond sombre. Citation italique. Logo Feat Club bas."
   },
   {
-    num: "02", title: "Sarah — Remise en forme post-grossesse",
-    sub: "Small Group Pilates · Remise en forme",
-    legende: "FEAT PEOPLE 👤\n\nSarah, 34 ans, maman de 2 enfants.\nObjectif : retrouver son corps et sa confiance après la grossesse.\n\n2 mois de Pilates Small Group :\n→ Renforcement du core complet\n→ Douleurs lombaires disparues\n→ 2h par semaine qui changent tout\n\n\"J'avais peur de ne pas tenir. Mais l'ambiance du groupe m'a portée.\"\n\nFeatness, not Fitness.",
-    cta: "Réserve ta séance d'essai → lien en bio 👆",
-    hashtags: "#FeatClub #FeatPeople #Pilates #PostGrossesse #BackToBasics #BoulogneBillancourt #SmallGroup #FeatnessNotFitness",
-    visuel: "Photo naturelle de Sarah en séance ou portrait. Ambiance chaleureuse. Citation mise en valeur."
+    num:"02", title:"Sarah — Remise en forme post-grossesse", sub:"Small Group Pilates · Remise en forme",
+    hook:{ texte:"2H PAR SEMAINE. TOUT A CHANGÉ.", soustitre:"SARAH · 34 ANS · 2 ENFANTS", badge:"FEAT PEOPLE", position:"Texte bas sur overlay sombre · émotion au premier plan · badge vert", conseil:"La phrase résonne avec les mamans. Pas de chiffre ici — juste l'émotion." },
+    legende:"FEAT PEOPLE 👤\n\nSarah, 34 ans, maman de 2 enfants.\nObjectif : retrouver son corps et sa confiance après la grossesse.\n\n2 mois de Pilates Small Group :\n→ Renforcement du core complet\n→ Douleurs lombaires disparues\n→ 2h par semaine qui changent tout\n\n\"J'avais peur de ne pas tenir. Mais l'ambiance du groupe m'a portée.\"\n\nFeatness, not Fitness.",
+    cta:"Réserve ta séance d'essai → lien en bio 👆",
+    hashtags:"#FeatClub #FeatPeople #Pilates #PostGrossesse #BackToBasics #BoulogneBillancourt #SmallGroup #FeatnessNotFitness",
+    visuel:"Photo naturelle Sarah en séance ou portrait. Ambiance chaleureuse. Citation mise en valeur."
   },
   {
-    num: "03", title: "Marcus — Préparation compétition",
-    sub: "Personal Training · Performance",
-    legende: "FEAT PEOPLE 👤\n\nMarcus, 25 ans, sportif amateur.\nObjectif : préparer son premier triathlon.\n\n4 mois de préparation avec Feat Club :\n→ Programme cross-training sur mesure\n→ Travail cardio + force\n→ Finisher du triathlon de Paris 2025\n\n\"Feat Club m'a appris à m'entraîner intelligemment, pas juste fort.\"\n\nBack to Basics.",
-    cta: "T'as un objectif sportif ? On t'aide à l'atteindre → DM 📩",
-    hashtags: "#FeatClub #FeatPeople #Performance #Triathlon #PersonalTraining #BackToBasics #BoulogneBillancourt #CoachSportif",
-    visuel: "Photo action ou portrait. Chiffre fort (distance, temps) en overlay orange. Ambiance achievement."
+    num:"03", title:"Marcus — Préparation compétition", sub:"Personal Training · Performance",
+    hook:{ texte:"FINISHER DU TRIATHLON DE PARIS", soustitre:"4 MOIS DE PRÉPARATION · FEAT CLUB", badge:"FEAT PEOPLE", position:"Achievement en grand centré · date/durée dessous · badge vert coin", conseil:"Un résultat concret et vérifiable. Les gens aiment les preuves." },
+    legende:"FEAT PEOPLE 👤\n\nMarcus, 25 ans, sportif amateur.\nObjectif : préparer son premier triathlon.\n\n4 mois de préparation avec Feat Club :\n→ Programme cross-training sur mesure\n→ Travail cardio + force\n→ Finisher du triathlon de Paris 2025\n\n\"Feat Club m'a appris à m'entraîner intelligemment, pas juste fort.\"\n\nBack to Basics.",
+    cta:"T'as un objectif sportif ? On t'aide à l'atteindre → DM 📩",
+    hashtags:"#FeatClub #FeatPeople #Performance #Triathlon #PersonalTraining #BackToBasics #BoulogneBillancourt #CoachSportif",
+    visuel:"Photo action ou portrait. Chiffre fort overlay orange. Ambiance achievement."
   },
   {
-    num: "04", title: "Emma — Perte de poids durable",
-    sub: "Personal Training + Suivi nutrition",
-    legende: "FEAT PEOPLE 👤\n\nEmma, 31 ans, chargée de marketing.\nObjectif : perdre du poids durablement, sans régime.\n\n6 mois chez Feat Club :\n→ -12kg\n→ Programme sport + suivi nutritionnel\n→ Habitudes ancrées dans la durée\n\n\"J'avais essayé 4 salles avant. Chez Feat Club, j'ai compris pourquoi ça marchait pas avant.\"\n\nFeatness, not Fitness.",
-    cta: "Prêt(e) pour ta transformation ? Séance d'essai offerte en bio 👆",
-    hashtags: "#FeatClub #FeatPeople #PerteDePoids #Transformation #BackToBasics #BoulogneBillancourt #PersonalTraining #FeatnessNotFitness",
-    visuel: "Avant/après si accord du membre. Sinon portrait seul. Citation forte. Design sobre et émotionnel."
+    num:"04", title:"Emma — Perte de poids durable", sub:"Personal Training + Suivi nutrition",
+    hook:{ texte:"-12KG", soustitre:"SANS RÉGIME · SANS S'AFFAMER", badge:"FEAT PEOPLE", position:"Chiffre géant centré · sous-titre cassant l'idée reçue · très fort visuellement", conseil:"Le contraste '-12kg / sans régime' crée la curiosité. Les gens veulent savoir comment." },
+    legende:"FEAT PEOPLE 👤\n\nEmma, 31 ans, chargée de marketing.\nObjectif : perdre du poids durablement, sans régime.\n\n6 mois chez Feat Club :\n→ -12kg\n→ Programme sport + suivi nutritionnel\n→ Habitudes ancrées dans la durée\n\n\"J'avais essayé 4 salles avant. Chez Feat Club, j'ai compris pourquoi ça marchait pas avant.\"\n\nFeatness, not Fitness.",
+    cta:"Prêt(e) pour ta transformation ? Séance d'essai offerte en bio 👆",
+    hashtags:"#FeatClub #FeatPeople #PerteDePoids #Transformation #BackToBasics #BoulogneBillancourt #PersonalTraining #FeatnessNotFitness",
+    visuel:"Avant/après si accord. Sinon portrait seul. Citation forte. Design sobre émotionnel."
   }
 ];
 
 const postsIdee = [
   {
-    num: "01", title: "Faut-il vraiment faire 10 000 pas par jour ?",
-    sub: "Idée reçue · Santé",
-    legende: "FAUT-IL VRAIMENT FAIRE 10 000 PAS PAR JOUR ? 🤔\n\nTu as sûrement entendu ce chiffre. Mais d'où vient-il ?\n\nLa vérité : ce chiffre vient d'une campagne marketing japonaise des années 60 pour vendre un podomètre. Pas d'une étude scientifique.\n\nCe que la science dit vraiment :\n→ 7 000 pas suffisent pour réduire le risque de mortalité\n→ La qualité du mouvement compte plus que la quantité\n→ 30 min de marche active vaut mieux que 10 000 pas lents\n\nConclusion : bougez intelligemment. Pas par habitude marketing.",
-    cta: "Tu connais d'autres idées reçues sur le sport ? Commente 👇",
-    hashtags: "#FeatClub #IdeéReçue #BackToBasics #ConseilSport #SantéSport #BoulogneBillancourt #CoachSportif #FeatnessNotFitness",
-    visuel: "Post carrousel. Slide 1 = question en grand. Slides 2-3 = démontage de l'idée. Slide 4 = vérité + source."
+    num:"01", title:"Faut-il vraiment faire 10 000 pas par jour ?", sub:"Idée reçue · Santé",
+    hook:{ texte:"10 000 PAS PAR JOUR ?", soustitre:"C'ÉTAIT UNE CAMPAGNE PUB.", badge:"MYTHE", position:"Question blanche en grand · réponse choc en orange · badge rouge 'MYTHE' coin haut", conseil:"La contradiction immédiate fait tout. Question + réponse choc = impossible de ne pas lire." },
+    legende:"FAUT-IL VRAIMENT FAIRE 10 000 PAS PAR JOUR ? 🤔\n\nTu as sûrement entendu ce chiffre. Mais d'où vient-il ?\n\nLa vérité : ce chiffre vient d'une campagne marketing japonaise des années 60 pour vendre un podomètre. Pas d'une étude scientifique.\n\nCe que la science dit vraiment :\n→ 7 000 pas suffisent pour réduire le risque de mortalité\n→ La qualité du mouvement compte plus que la quantité\n→ 30 min de marche active vaut mieux que 10 000 pas lents\n\nConclusion : bougez intelligemment. Pas par habitude marketing.",
+    cta:"Tu connais d'autres idées reçues sur le sport ? Commente 👇",
+    hashtags:"#FeatClub #IdeéReçue #BackToBasics #ConseilSport #SantéSport #BoulogneBillancourt #CoachSportif #FeatnessNotFitness",
+    visuel:"Carrousel. Slide 1 = question en grand. Slides 2-3 = démontage. Slide 4 = vérité + source."
   },
   {
-    num: "02", title: "Les étirements avant le sport, vraiment utiles ?",
-    sub: "Idée reçue · Échauffement",
-    legende: "LES ÉTIREMENTS AVANT LE SPORT, VRAIMENT UTILES ? 🤔\n\nOn nous l'a tous appris à l'école. Mais c'est faux.\n\nLa réalité :\n→ Les étirements statiques avant l'effort DIMINUENT les performances de 5 à 8%\n→ Ils réduisent la force musculaire à court terme\n→ Ils ne préviennent pas les blessures\n\nCe qui marche vraiment :\n→ Mobilité articulaire dynamique\n→ Activation musculaire progressive\n→ Cardio léger (vélo, saut à la corde)\n\nGarde les étirements pour APRÈS. Toujours.",
-    cta: "Partage ce post à quelqu'un qui s'étire avant sa séance 👇",
-    hashtags: "#FeatClub #IdeéReçue #Étirements #BackToBasics #ConseilSport #Musculation #CoachSportif #BoulogneSport",
-    visuel: "Carrousel. Slide 1 = question choc. Slides 2-3 = explication. Slide 4 = la bonne méthode."
+    num:"02", title:"Les étirements avant le sport, vraiment utiles ?", sub:"Idée reçue · Échauffement",
+    hook:{ texte:"S'ÉTIRER AVANT LE SPORT ?", soustitre:"ÇA DIMINUE TES PERFS DE 8%.", badge:"FAUX", position:"Fond noir · question blanche · réponse orange choc · badge rouge coin haut gauche", conseil:"Le chiffre précis (8%) rend la claim crédible et scientifique." },
+    legende:"LES ÉTIREMENTS AVANT LE SPORT, VRAIMENT UTILES ? 🤔\n\nOn nous l'a tous appris à l'école. Mais c'est faux.\n\nLa réalité :\n→ Les étirements statiques avant l'effort DIMINUENT les performances de 5 à 8%\n→ Ils réduisent la force musculaire à court terme\n→ Ils ne préviennent pas les blessures\n\nCe qui marche vraiment :\n→ Mobilité articulaire dynamique\n→ Activation musculaire progressive\n→ Cardio léger (vélo, saut à la corde)\n\nGarde les étirements pour APRÈS. Toujours.",
+    cta:"Partage ce post à quelqu'un qui s'étire avant sa séance 👇",
+    hashtags:"#FeatClub #IdeéReçue #Étirements #BackToBasics #ConseilSport #Musculation #CoachSportif #BoulogneSport",
+    visuel:"Carrousel. Slide 1 = question choc. Slides 2-3 = explication. Slide 4 = bonne méthode."
   },
   {
-    num: "03", title: "Plus on transpire, plus on brûle des calories ?",
-    sub: "Idée reçue · Nutrition / Effort",
-    legende: "PLUS ON TRANSPIRE, PLUS ON BRÛLE DES CALORIES ? 🤔\n\nMythe total. Et voilà pourquoi.\n\nLa transpiration c'est uniquement la régulation de ta température corporelle. Pas un indicateur de calories brûlées.\n\nPreuve : tu transpires plus par 35°C qu'en salle climatisée — pourtant tu brûles pareil.\n\nCe qui détermine vraiment les calories brûlées :\n→ L'intensité de l'effort\n→ Ta masse musculaire\n→ La durée de la séance\n→ Ton métabolisme de base\n\nTranspirer = tu as chaud. Pas plus.",
-    cta: "Tu pensais que c'était vrai ? Commente 😅 👇",
-    hashtags: "#FeatClub #IdeéReçue #Calories #BackToBasics #ConseilSport #Nutrition #CoachSportif #FeatnessNotFitness",
-    visuel: "Carrousel avec infographie. Fond noir. Texte blanc et orange. Sources scientifiques en slide final."
+    num:"03", title:"Plus on transpire, plus on brûle des calories ?", sub:"Idée reçue · Nutrition / Effort",
+    hook:{ texte:"TRANSPIRER ≠ BRULER DES CALORIES", soustitre:"VOILÀ CE QUI COMPTE VRAIMENT.", badge:"MYTHE", position:"Équation choc en grand · signe ≠ en orange · badge haut · fond noir", conseil:"Le symbole ≠ est visuel et universel. Lu en une fraction de seconde." },
+    legende:"PLUS ON TRANSPIRE, PLUS ON BRÛLE DES CALORIES ? 🤔\n\nMythe total. Et voilà pourquoi.\n\nLa transpiration c'est uniquement la régulation de ta température corporelle. Pas un indicateur de calories brûlées.\n\nPreuve : tu transpires plus par 35°C qu'en salle climatisée — pourtant tu brûles pareil.\n\nCe qui détermine vraiment les calories brûlées :\n→ L'intensité de l'effort\n→ Ta masse musculaire\n→ La durée de la séance\n→ Ton métabolisme de base\n\nTranspirer = tu as chaud. Pas plus.",
+    cta:"Tu pensais que c'était vrai ? Commente 😅 👇",
+    hashtags:"#FeatClub #IdeéReçue #Calories #BackToBasics #ConseilSport #Nutrition #CoachSportif #FeatnessNotFitness",
+    visuel:"Carrousel infographie. Fond noir. Texte blanc et orange. Sources en slide final."
   },
   {
-    num: "04", title: "La musculation rend les femmes trop musclées ?",
-    sub: "Idée reçue · Femmes & sport",
-    legende: "LA MUSCULATION REND LES FEMMES TROP MUSCLÉES ? 🤔\n\nUn des mythes les plus répandus. Et les plus faux.\n\nLa biologie :\n→ Les femmes ont 10 à 20x moins de testostérone que les hommes\n→ Cette hormone est le principal déclencheur de croissance musculaire\n→ Developper une masse musculaire visible prend des années d'entraînement très intense\n\nCe que la musculation fait vraiment pour les femmes :\n→ Tonification et galbe\n→ Amélioration de la densité osseuse\n→ Accélération du métabolisme\n→ Réduction des douleurs chroniques\n\nLa musculation, c'est pour tout le monde.",
-    cta: "Partage à quelqu'un qui évite la muscu pour cette raison 👇",
-    hashtags: "#FeatClub #IdeéReçue #FemmesEtSport #Musculation #BackToBasics #BoulogneBillancourt #CoachSportif #FeatnessNotFitness",
-    visuel: "Post carrousel ou visuel fort. Photo d'une femme en séance muscu. Tone : éducatif et bienveillant."
+    num:"04", title:"La musculation rend les femmes trop musclées ?", sub:"Idée reçue · Femmes & sport",
+    hook:{ texte:"LA MUSCU REND LES FEMMES TROP MUSCLÉES ?", soustitre:"10X MOINS DE TESTOSTÉRONE. IMPOSSIBLE.", badge:"FAUX", position:"Question + réfutation bio · badge rouge · photo femme muscu fond désaturé", conseil:"Briser directement le mythe avec un fait biologique. Éducatif ET rassurant." },
+    legende:"LA MUSCULATION REND LES FEMMES TROP MUSCLÉES ? 🤔\n\nUn des mythes les plus répandus. Et les plus faux.\n\nLa biologie :\n→ Les femmes ont 10 à 20x moins de testostérone que les hommes\n→ Cette hormone est le principal déclencheur de croissance musculaire\n→ Developper une masse musculaire visible prend des années d'entraînement très intense\n\nCe que la musculation fait vraiment pour les femmes :\n→ Tonification et galbe\n→ Amélioration de la densité osseuse\n→ Accélération du métabolisme\n→ Réduction des douleurs chroniques\n\nLa musculation, c'est pour tout le monde.",
+    cta:"Partage à quelqu'un qui évite la muscu pour cette raison 👇",
+    hashtags:"#FeatClub #IdeéReçue #FemmesEtSport #Musculation #BackToBasics #BoulogneBillancourt #CoachSportif #FeatnessNotFitness",
+    visuel:"Carrousel ou visuel fort. Photo femme en séance muscu. Tone éducatif et bienveillant."
   }
 ];
 
 const postsStudio = [
   {
-    num: "01", title: "Cross Training — Ambiance 6h45",
-    sub: "Immersion Studio · Small Group",
-    legende: "6H45. LA SALLE EST EN FEU. 🔥\n\nSmall Group Cross Training.\n6 personnes. 1 coach. 45 minutes d'effort pur.\n\nPas de machines. Pas d'écrans. Juste des corps qui travaillent et un coach qui guide.\n\nC'est pour ça qu'on appelle ça Small Group — assez petit pour que chaque mouvement soit corrigé. Assez grand pour l'énergie collective.\n\nFeatness, not Fitness.",
-    cta: "Rejoins le prochain créneau → DM ou lien en bio 👆",
-    hashtags: "#FeatClub #CrossTraining #SmallGroup #BackToBasics #BoulogneBillancourt #CoachSportif #Ambiance #FeatnessNotFitness",
-    visuel: "Vidéo ou photo action pendant la séance. Énergie visible. Sueur. Effort. Ambiance authentique."
+    num:"01", title:"Cross Training — Ambiance 6h45", sub:"Immersion Studio · Small Group",
+    hook:{ texte:"6H45. LA SALLE EST EN FEU.", soustitre:"SMALL GROUP · 6 PERS · 45 MIN", badge:"CROSS TRAINING", position:"Heure en petites lettres espacées haut · titre en grand centre · badge vert bas", conseil:"L'heure précise crée une image mentale immédiate. Les gens voient la scène avant de lire." },
+    legende:"6H45. LA SALLE EST EN FEU. 🔥\n\nSmall Group Cross Training.\n6 personnes. 1 coach. 45 minutes d'effort pur.\n\nPas de machines. Pas d'écrans. Juste des corps qui travaillent et un coach qui guide.\n\nC'est pour ça qu'on appelle ça Small Group — assez petit pour que chaque mouvement soit corrigé. Assez grand pour l'énergie collective.\n\nFeatness, not Fitness.",
+    cta:"Rejoins le prochain créneau → DM ou lien en bio 👆",
+    hashtags:"#FeatClub #CrossTraining #SmallGroup #BackToBasics #BoulogneBillancourt #CoachSportif #Ambiance #FeatnessNotFitness",
+    visuel:"Vidéo ou photo action séance. Énergie visible. Sueur. Effort. Ambiance authentique."
   },
   {
-    num: "02", title: "Pilates — La force dans le calme",
-    sub: "Immersion Studio · Pilates",
-    legende: "LE CALME N'EST PAS L'ABSENCE D'EFFORT. 🧘\n\nPilates Small Group chez Feat Club.\n\nCeux qui pensent que le Pilates c'est facile n'ont jamais essayé. C'est de la force profonde. Du contrôle. De la précision.\n\nEt après 1h de Pilates bien fait, tu ressens chaque muscle.\n\n→ Renforcement du core\n→ Correction posturale\n→ Flexibilité et mobilité\n→ Récupération active\n\nDisponible en Small Group · 2 à 6 pers.",
-    cta: "Essaie gratuitement → séance d'essai offerte en bio 👆",
-    hashtags: "#FeatClub #Pilates #SmallGroup #BackToBasics #BoulogneBillancourt #CoreStrength #CoachSportif #FeatnessNotFitness",
-    visuel: "Photo ou vidéo d'une séance Pilates. Ambiance apaisée mais intense. Lumière naturelle."
+    num:"02", title:"Pilates — La force dans le calme", sub:"Immersion Studio · Pilates",
+    hook:{ texte:"LE PILATES C'EST FACILE ?", soustitre:"VIENS ESSAYER. ON EN REPARLE.", badge:"PILATES", position:"Question provocatrice blanche · réponse défi orange · fond sombre · ambiance apaisée", conseil:"Le défi doux attire les curieux ET ceux qui pensent que le Pilates c'est pour se relaxer." },
+    legende:"LE CALME N'EST PAS L'ABSENCE D'EFFORT. 🧘\n\nPilates Small Group chez Feat Club.\n\nCeux qui pensent que le Pilates c'est facile n'ont jamais essayé. C'est de la force profonde. Du contrôle. De la précision.\n\nEt après 1h de Pilates bien fait, tu ressens chaque muscle.\n\n→ Renforcement du core\n→ Correction posturale\n→ Flexibilité et mobilité\n→ Récupération active\n\nDisponible en Small Group · 2 à 6 pers.",
+    cta:"Essaie gratuitement → séance d'essai offerte en bio 👆",
+    hashtags:"#FeatClub #Pilates #SmallGroup #BackToBasics #BoulogneBillancourt #CoreStrength #CoachSportif #FeatnessNotFitness",
+    visuel:"Photo ou vidéo séance Pilates. Ambiance apaisée mais intense. Lumière naturelle."
   },
   {
-    num: "03", title: "Boxe — Défoulez-vous intelligemment",
-    sub: "Immersion Studio · Boxe",
-    legende: "LA BOXE, C'EST PAS QUE POUR SE BATTRE. 🥊\n\nBoxe Small Group chez Feat Club.\n\nC'est :\n→ Le meilleur cardio qui n'ait jamais ressemblé à du cardio\n→ Un défouloir total après une journée de boulot\n→ De la coordination, de la technique, de la puissance\n→ Une confiance en soi qui déborde sur tout le reste\n\nPas besoin d'expérience. Juste de l'envie.\n\nSmall Group · Max 6 pers · Coach dédié.",
-    cta: "Prochaine session : DM pour les horaires 📩",
-    hashtags: "#FeatClub #Boxe #SmallGroup #BackToBasics #BoulogneBillancourt #Boxing #CoachSportif #FeatnessNotFitness",
-    visuel: "Action shot pendant la séance boxe. Mouvement, puissance, technique visible. Son d'ambiance si vidéo."
+    num:"03", title:"Boxe — Défoulez-vous intelligemment", sub:"Immersion Studio · Boxe",
+    hook:{ texte:"APRÈS UNE JOURNÉE DE MERDE.", soustitre:"Y'A LA BOXE.", badge:"BOXE", position:"Texte direct en grand · deuxième ligne courte et percutante · fond sombre · photo action fond", conseil:"On parle à l'émotion, pas à la discipline. Tout le monde a eu une mauvaise journée." },
+    legende:"LA BOXE, C'EST PAS QUE POUR SE BATTRE. 🥊\n\nBoxe Small Group chez Feat Club.\n\nC'est :\n→ Le meilleur cardio qui n'ait jamais ressemblé à du cardio\n→ Un défouloir total après une journée de boulot\n→ De la coordination, de la technique, de la puissance\n→ Une confiance en soi qui déborde sur tout le reste\n\nPas besoin d'expérience. Juste de l'envie.\n\nSmall Group · Max 6 pers · Coach dédié.",
+    cta:"Prochaine session : DM pour les horaires 📩",
+    hashtags:"#FeatClub #Boxe #SmallGroup #BackToBasics #BoulogneBillancourt #Boxing #CoachSportif #FeatnessNotFitness",
+    visuel:"Action shot séance boxe. Mouvement, puissance, technique visible."
   },
   {
-    num: "04", title: "La salle à 5h30 — Back to Basics",
-    sub: "Immersion Studio · Atmosphère",
-    legende: "IL Y A QUELQUE CHOSE DE MAGIQUE À 5H30. ✨\n\nLa salle est vide. Les lumières s'allument doucement.\nLes barres sont froides. L'air sent le caoutchouc et le métal.\n\nEt puis les premiers arrivent.\n\nIls ne se parlent pas encore. Chacun dans sa préparation. Dans sa tête. Dans son rituel.\n\nC'est pour ça qu'on se lève tôt. Pour ce silence avant la tempête.\n\nBack to Basics.",
-    cta: "Tu es du matin ? Réserve ton créneau 5h30 → lien en bio",
-    hashtags: "#FeatClub #BackToBasics #MorningWorkout #BoulogneBillancourt #StudioSport #Ambiance #CoachSportif #FeatnessNotFitness",
-    visuel: "Photo atmosphérique de la salle vide le matin. Lumière rasante. Noir et blanc ou très peu saturé."
+    num:"04", title:"La salle à 5h30 — Back to Basics", sub:"Immersion Studio · Atmosphère",
+    hook:{ texte:"5H30.", soustitre:"CERTAINS CHOISISSENT LE SILENCE AVANT LA TEMPÊTE.", badge:"BACK TO BASICS", position:"Heure seule en très grand orange · sous-titre en petit blanc · photo atmosphérique salle vide fond", conseil:"Le minimalisme ici EST le message. Moins il y a, plus ça frappe." },
+    legende:"IL Y A QUELQUE CHOSE DE MAGIQUE À 5H30. ✨\n\nLa salle est vide. Les lumières s'allument doucement.\nLes barres sont froides. L'air sent le caoutchouc et le métal.\n\nEt puis les premiers arrivent.\n\nIls ne se parlent pas encore. Chacun dans sa préparation. Dans sa tête. Dans son rituel.\n\nC'est pour ça qu'on se lève tôt. Pour ce silence avant la tempête.\n\nBack to Basics.",
+    cta:"Tu es du matin ? Réserve ton créneau 5h30 → lien en bio",
+    hashtags:"#FeatClub #BackToBasics #MorningWorkout #BoulogneBillancourt #StudioSport #Ambiance #CoachSportif #FeatnessNotFitness",
+    visuel:"Photo atmosphérique salle vide le matin. Lumière rasante. Noir et blanc ou très peu saturé."
   }
 ];
 
 const postsEvent = [
   {
-    num: "01", title: "TEMPLATE — Événement à venir",
-    sub: "Feat Event · Template générique",
-    legende: "⚡ FEAT EVENT ⚡\n\n[NOM DE L'ÉVÉNEMENT EN MAJUSCULES]\n\n📅 [DATE]\n🕐 [HEURE]\n📍 [LIEU]\n\n[Description courte en 2-3 lignes. Ce qui rend cet événement unique. Pourquoi venir.]\n\n✅ Places limitées\n✅ [Avantage spécifique]\n✅ [Avantage spécifique]",
-    cta: "DM '[MOT CLE]' pour réserver ta place 📩",
-    hashtags: "#FeatClub #FeatEvent #BackToBasics #BoulogneBillancourt #[EventName] #CoachSportif #FeatnessNotFitness",
-    visuel: "Visuel fort avec date et lieu en grand. Fond orange ou noir. Countdown si possible."
+    num:"01", title:"TEMPLATE — Événement à venir", sub:"Feat Event · Template générique",
+    hook:{ texte:"[NOM DE L'ÉVÉNEMENT]", soustitre:"[DATE] · [LIEU]", badge:"FEAT EVENT", position:"Nom event très grand · date visible en orange · badge event haut · fond sombre ou orange", conseil:"La date doit être la première info lue. Les gens décident en 1 seconde si c'est pertinent." },
+    legende:"⚡ FEAT EVENT ⚡\n\n[NOM DE L'ÉVÉNEMENT EN MAJUSCULES]\n\n📅 [DATE]\n🕐 [HEURE]\n📍 [LIEU]\n\n[Description courte 2-3 lignes. Ce qui rend l'événement unique. Pourquoi venir.]\n\n✅ Places limitées\n✅ [Avantage spécifique]\n✅ [Avantage spécifique]",
+    cta:"DM '[MOT CLE]' pour réserver ta place 📩",
+    hashtags:"#FeatClub #FeatEvent #BackToBasics #BoulogneBillancourt #[EventName] #CoachSportif #FeatnessNotFitness",
+    visuel:"Visuel fort avec date et lieu en grand. Fond orange ou noir. Countdown si possible."
   },
   {
-    num: "02", title: "EXEMPLE — Run Club mensuel",
-    sub: "Feat Event · Run Club",
-    legende: "⚡ FEAT EVENT ⚡\n\nRUN CLUB MENSUEL\n\n📅 Samedi 14 juin\n🕐 9h00\n📍 Parc de Saint-Cloud · Parking principal\n\nNotre sortie running mensuelle encadrée par le coach. Tous niveaux bienvenus. 8km à ton rythme, en groupe, avec des conseils techniques en temps réel.\n\n✅ Gratuit pour les membres Feat Club\n✅ 5€ pour les non-membres\n✅ Ravitaillement offert",
-    cta: "DM 'RUN' pour confirmer ta présence 📩",
-    hashtags: "#FeatClub #RunClub #FeatEvent #BackToBasics #BoulogneBillancourt #Running #CoachSportif #FeatnessNotFitness",
-    visuel: "Photo du parcours ou de la dernière sortie. Carte du trajet en overlay. Ambiance conviviale."
+    num:"02", title:"EXEMPLE — Run Club mensuel", sub:"Feat Event · Run Club",
+    hook:{ texte:"RUN CLUB · 14 JUIN", soustitre:"8KM · TOUS NIVEAUX · GRATUIT MEMBRES", badge:"FEAT EVENT", position:"Date en orange bien visible · distance + infos pratiques blanc · badge haut gauche", conseil:"'Gratuit membres' capte les membres ET donne envie aux non-membres de s'inscrire." },
+    legende:"⚡ FEAT EVENT ⚡\n\nRUN CLUB MENSUEL\n\n📅 Samedi 14 juin\n🕐 9h00\n📍 Parc de Saint-Cloud · Parking principal\n\nNotre sortie running mensuelle encadrée par le coach. Tous niveaux bienvenus. 8km à ton rythme, en groupe, avec des conseils techniques en temps réel.\n\n✅ Gratuit pour les membres Feat Club\n✅ 5€ pour les non-membres\n✅ Ravitaillement offert",
+    cta:"DM 'RUN' pour confirmer ta présence 📩",
+    hashtags:"#FeatClub #RunClub #FeatEvent #BackToBasics #BoulogneBillancourt #Running #CoachSportif #FeatnessNotFitness",
+    visuel:"Photo parcours ou dernière sortie. Carte trajet overlay. Ambiance conviviale."
   },
   {
-    num: "03", title: "EXEMPLE — Workshop nutrition",
-    sub: "Feat Event · Workshop",
-    legende: "⚡ FEAT EVENT ⚡\n\nWORKSHOP NUTRITION SPORTIVE\n\n📅 Mercredi 25 juin\n🕐 19h30\n📍 Feat Club · Boulogne-Billancourt\n\n2h pour comprendre enfin comment manger pour performer. Animé par notre coach et une diététicienne sportive.\n\n✅ 6 places max\n✅ Supports inclus\n✅ Questions/réponses",
-    cta: "DM 'WORKSHOP' pour réserver · 6 places · Priorité membres 📩",
-    hashtags: "#FeatClub #Workshop #Nutrition #FeatEvent #BackToBasics #BoulogneBillancourt #CoachSportif #FeatnessNotFitness",
-    visuel: "Visuel sobre et pro. Fond sombre. Intervenants mis en avant. Date en grand format orange."
+    num:"03", title:"EXEMPLE — Workshop nutrition", sub:"Feat Event · Workshop",
+    hook:{ texte:"MANGER POUR PERFORMER.", soustitre:"WORKSHOP · 25 JUIN · 6 PLACES", badge:"FEAT EVENT", position:"Accroche bénéfice en grand · date + rareté '6 places' en orange · fond sombre pro", conseil:"'6 places' crée l'urgence sans être agressif. La rareté déclenche l'action." },
+    legende:"⚡ FEAT EVENT ⚡\n\nWORKSHOP NUTRITION SPORTIVE\n\n📅 Mercredi 25 juin\n🕐 19h30\n📍 Feat Club · Boulogne-Billancourt\n\n2h pour comprendre enfin comment manger pour performer. Animé par notre coach et une diététicienne sportive.\n\n✅ 6 places max\n✅ Supports inclus\n✅ Questions/réponses",
+    cta:"DM 'WORKSHOP' pour réserver · 6 places · Priorité membres 📩",
+    hashtags:"#FeatClub #Workshop #Nutrition #FeatEvent #BackToBasics #BoulogneBillancourt #CoachSportif #FeatnessNotFitness",
+    visuel:"Visuel sobre et pro. Fond sombre. Intervenants mis en avant. Date grand format orange."
   }
 ];
 
@@ -830,6 +1035,14 @@ function renderPosts(data, containerId) {
         <div class="post-arrow">›</div>
       </div>
       <div class="post-detail">
+        <div class="hook-box">
+          <div class="hook-label">📸 Accroche visuelle — sur la photo / vidéo</div>
+          <div class="hook-line"><div class="hook-key">Texte principal</div><div class="hook-val"><strong>${p.hook.texte}</strong></div></div>
+          <div class="hook-line"><div class="hook-key">Sous-titre</div><div class="hook-val">${p.hook.soustitre}</div></div>
+          <div class="hook-line"><div class="hook-key">Badge</div><div class="hook-val">${p.hook.badge}</div></div>
+          <div class="hook-line"><div class="hook-key">Placement</div><div class="hook-val">${p.hook.position}</div></div>
+          <div class="hook-line"><div class="hook-key">Pourquoi</div><div class="hook-val" style="font-style:italic;color:rgba(245,240,235,0.5)">${p.hook.conseil}</div></div>
+        </div>
         <div class="post-section">
           <div class="post-label" style="color:#2A8C7E">📝 Légende complète</div>
           <div class="post-content">${p.legende.replace(/\n/g,'<br>')}</div>
@@ -846,28 +1059,26 @@ function renderPosts(data, containerId) {
           <div class="post-label" style="color:#7E22CE">📸 Direction visuelle</div>
           <div class="post-content post-tip">${p.visuel}</div>
         </div>
-        <button class="copy-btn" onclick="copyPostContent('${containerId}', ${i}, event)">Copier le post</button>
+        <button class="copy-btn" onclick="copyPost('${containerId}',${i},event)">Copier le post</button>
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
 
 function togglePost(containerId, i) {
   const item = document.getElementById(`post-${containerId}-${i}`);
   const wasSelected = item.classList.contains('selected');
-  document.querySelectorAll(`#posts-${containerId.replace('posts-','')} .post-item`).forEach(p => p.classList.remove('selected'));
+  const pageId = containerId.replace('posts-','');
+  document.querySelectorAll(`#posts-${pageId} .post-item`).forEach(p => p.classList.remove('selected'));
   if (!wasSelected) item.classList.add('selected');
 }
 
-function copyPostContent(containerId, i, e) {
+function copyPost(containerId, i, e) {
   e.stopPropagation();
-  const dataMap = { 'posts-people': postsPeople, 'posts-idee': postsIdee, 'posts-studio': postsStudio, 'posts-event': postsEvent };
-  const data = dataMap[containerId];
-  const p = data[i];
+  const map = {'posts-people':postsPeople,'posts-idee':postsIdee,'posts-studio':postsStudio,'posts-event':postsEvent};
+  const p = map[containerId][i];
   navigator.clipboard.writeText(`${p.legende}\n\n${p.cta}\n\n${p.hashtags}`);
   const btn = e.target;
-  btn.textContent = '✓ Copié !';
-  btn.classList.add('copied');
+  btn.textContent = '✓ Copié !'; btn.classList.add('copied');
   setTimeout(() => { btn.textContent = 'Copier le post'; btn.classList.remove('copied'); }, 2000);
 }
 
@@ -878,17 +1089,12 @@ function showPostType(type) {
   event.target.classList.add('active');
 }
 
-// INIT
-renderStories();
+/* ═══════════════════ INIT ══════════════════════════════════════════════ */
+renderWeeks();
 renderPosts(postsPeople, 'posts-people');
 renderPosts(postsIdee, 'posts-idee');
 renderPosts(postsStudio, 'posts-studio');
 renderPosts(postsEvent, 'posts-event');
-
-// Mobile stories layout
-if (window.innerWidth <= 700) {
-  document.getElementById('stories-layout').style.gridTemplateColumns = '1fr';
-}
 </script>
 </body>
 </html>
